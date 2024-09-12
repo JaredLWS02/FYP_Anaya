@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInputAction",
+    "name": "PlayerControls",
     "maps": [
         {
             "name": "Anaya",
