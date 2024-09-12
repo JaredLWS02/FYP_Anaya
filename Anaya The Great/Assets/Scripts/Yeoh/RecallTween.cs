@@ -48,7 +48,6 @@ public class RecallTween : MonoBehaviour
 
         // ignore if cooling down
         if(!canRecall) return;
-        canRecall = false;
         StartCoroutine(RecallCooling(CooldownTime));
 
         recallTween = WolfTr.DOMove(transform.position, TweenTime)
@@ -57,6 +56,7 @@ public class RecallTween : MonoBehaviour
 
     IEnumerator RecallCooling(float t)
     {
+        canRecall = false;
         yield return new WaitForSeconds(t);
         canRecall = true;
     }
