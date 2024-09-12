@@ -1,0 +1,62 @@
+{
+    "name": "PlayerInputAction",
+    "maps": [
+        {
+            "name": "Anaya",
+            "id": "83a93733-68da-4b3e-8be9-837180ce75e5",
+            "actions": [
+                {
+                    "name": "Recall",
+                    "type": "Button",
+                    "id": "7f17d2f3-1265-4f98-a426-7df981aca2a6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "73a7fdde-8c54-432c-98a6-4ddd89fea097",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Recall",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Wolf",
+            "id": "ab82e1f2-e2dd-4f1b-87f6-f0620c2445ce",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "cc57b99c-f48a-4165-b032-4ad727eecb13",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b4dd0c13-e528-48bc-9581-cbddb8d2e522",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

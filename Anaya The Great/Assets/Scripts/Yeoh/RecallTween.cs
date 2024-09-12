@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(MnKMovement))]
 
 public class RecallTween : MonoBehaviour
@@ -16,16 +18,6 @@ public class RecallTween : MonoBehaviour
 
     //---------------------------------------------------------------------------
 
-    public KeyCode RecallKey = KeyCode.X;
-
-    void Update()
-    {
-        if(Input.GetKeyDown(RecallKey))
-        {
-            Recall();
-        }
-    }
-
     bool canRecall = true;
 
     public Transform WolfTr;
@@ -34,7 +26,8 @@ public class RecallTween : MonoBehaviour
 
     Tween recallTween;
 
-    void Recall()
+    // new input system event
+    void OnRecall()
     {
         // ignore if still tweening
         if(recallTween!=null && recallTween.IsActive())
