@@ -11,7 +11,7 @@ public class charSwitch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        p2.enabled = false;
     }
 
     // Update is called once per frame
@@ -21,29 +21,20 @@ public class charSwitch : MonoBehaviour
         {
             switchPlayer();
         }
-
-        while(p1Active)
-        {
-            p1.enabled = true;
-            p2.enabled = false;
-        }
-
-        while (!p1Active)
-        {
-            p2.enabled = true;
-            p1.enabled = false;
-        }
-
     }
 
     public void switchPlayer()
     {
         if (p1Active)
         {
+            p2.enabled = true;
+            p1.enabled = false;
             p1Active = false;
         }
         else
         {
+            p1.enabled = true;
+            p2.enabled = false;
             p1Active = true;
         }
     }
