@@ -20,9 +20,9 @@ public class RecallTween : MonoBehaviour
 
     bool canRecall = true;
 
-    public Transform WolfTr;
-    public float TweenTime = .2f;
-    public float CooldownTime = 2;
+    public Transform wolfTr;
+    public float tweenTime = .2f;
+    public float cooldownTime = 2;
 
     Tween recallTween;
 
@@ -41,9 +41,9 @@ public class RecallTween : MonoBehaviour
 
         // ignore if cooling down
         if(!canRecall) return;
-        StartCoroutine(RecallCooling(CooldownTime));
+        StartCoroutine(RecallCooling(cooldownTime));
 
-        recallTween = WolfTr.DOMove(transform.position, TweenTime)
+        recallTween = wolfTr.DOMove(transform.position, tweenTime)
             .SetEase(Ease.InOutSine);
     }
 
