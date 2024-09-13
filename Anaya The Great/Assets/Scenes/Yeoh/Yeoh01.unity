@@ -384,8 +384,8 @@ GameObject:
   - component: {fileID: 595744099}
   - component: {fileID: 595744098}
   - component: {fileID: 595744097}
-  - component: {fileID: 595744096}
   - component: {fileID: 595744101}
+  - component: {fileID: 595744096}
   - component: {fileID: 595744100}
   m_Layer: 3
   m_Name: Player
@@ -563,9 +563,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4842e2080e597048bf7f0a966999d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WolfTr: {fileID: 1241917171}
-  TweenTime: 0.2
-  CooldownTime: 2
+  wolfTr: {fileID: 1241917171}
+  tweenTime: 0.2
+  cooldownTime: 2
 --- !u!114 &595744101
 MonoBehaviour:
   m_ObjectHideFlags: 0
