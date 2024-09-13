@@ -16,12 +16,12 @@
                 },
                 {
                     "name": "Jump",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "ba5918cd-f018-410a-b3fe-91b4f901fb95",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Recall",
@@ -58,6 +58,17 @@
                     "name": "",
                     "id": "9e290671-fc56-463b-9a61-03912731cda3",
                     "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Recall",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bdeed74b-29a3-463e-8816-081cabf65112",
+                    "path": "<HID::Logitech Logitech Dual Action>/button3",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -221,6 +232,17 @@
                 },
                 {
                     "name": "",
+                    "id": "1ddf212d-b249-4413-acd0-d7a745e5524c",
+                    "path": "<HID::Logitech Logitech Dual Action>/button2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "0662d965-ac1b-42fb-b1ba-4bf0eab5d30f",
                     "path": "<Keyboard>/leftShift",
                     "interactions": "",
@@ -234,6 +256,17 @@
                     "name": "",
                     "id": "f3e7e635-a901-4db7-b329-52130a69f513",
                     "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Switch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "624fbb7b-9cb5-4976-9314-505e57b07ab7",
+                    "path": "<HID::Logitech Logitech Dual Action>/button4",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
