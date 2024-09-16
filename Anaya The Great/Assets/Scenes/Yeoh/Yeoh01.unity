@@ -564,8 +564,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wolfTr: {fileID: 1241917171}
-  tweenTime: 0.2
-  cooldownTime: 2
+  tweenSpeed: 4
+  cooldownTime: 1
 --- !u!114 &595744101
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,21 +21,14 @@ public class RecallTween : MonoBehaviour
     bool canRecall = true;
 
     public Transform wolfTr;
-    public float tweenTime = .2f;
-    public float cooldownTime = 2;
+    public float tweenSpeed = 4;
+    public float cooldownTime = 1;
 
     Tween recallTween;
 
     // new input system event
     void OnRecall()
     {
-        // ignore if still tweening
-        if(recallTween!=null && recallTween.IsActive())
-        {
-            //recallTween.Kill();   // this is for spam proof
-            return;
-        }
-
         // ignore if not grounded 
         if(!movement.IsGrounded()) return;
 
@@ -43,8 +36,15 @@ public class RecallTween : MonoBehaviour
         if(!canRecall) return;
         StartCoroutine(RecallCooling(cooldownTime));
 
-        recallTween = wolfTr.DOMove(transform.position, tweenTime)
-            .SetEase(Ease.InOutSine);
+        // restart if still tweening
+        if(recallTween!=null && recallTween.IsActive())
+        {
+            recallTween.Kill();
+        }
+
+        recallTween = wolfTr.DOMove(transform.position, tweenSpeed)
+            .SetEase(Ease.InOutSine)
+            .SetSpeedBased(true);
     }
 
     IEnumerator RecallCooling(float t)
