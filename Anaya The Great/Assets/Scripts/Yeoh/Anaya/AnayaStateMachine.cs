@@ -14,7 +14,7 @@ public class AnayaStateMachine : MonoBehaviour
     StateMachine sm;
     BaseState defaultState;
 
-    void Start()
+    void Awake()
     {
         sm = new StateMachine();
         
