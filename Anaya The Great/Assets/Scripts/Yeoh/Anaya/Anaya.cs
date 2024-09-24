@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Character
+{
+    Anaya,
+    Wolf,
+}
+
+public enum Pilot
+{
+    None,
+    Player,
+    AI,
+}
+
 public class Anaya : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Pilot pilot = Pilot.Player;
 }
