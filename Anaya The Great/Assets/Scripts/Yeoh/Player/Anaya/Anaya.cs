@@ -31,6 +31,7 @@ public class Anaya : MonoBehaviour
     public bool AllowMoveX;
     public bool AllowMoveY;
     public bool AllowJump;
+    
     public bool AllowDash;
     public bool AllowClimb;
     public bool AllowCrawl;

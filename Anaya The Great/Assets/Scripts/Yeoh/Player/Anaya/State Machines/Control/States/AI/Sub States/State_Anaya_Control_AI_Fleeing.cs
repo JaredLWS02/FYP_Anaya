@@ -14,6 +14,8 @@ public class State_Anaya_Control_AI_Fleeing : BaseState
     protected override void OnEnter()
     {
         Debug.Log($"{anaya.gameObject.name} State: {Name}");
+
+        ToggleAllow(true);
     }
 
     protected override void OnUpdate(float deltaTime)
@@ -22,5 +24,11 @@ public class State_Anaya_Control_AI_Fleeing : BaseState
 
     protected override void OnExit()
     {
+        ToggleAllow(false);
+    }
+
+    void ToggleAllow(bool toggle)
+    {
+
     }
 }

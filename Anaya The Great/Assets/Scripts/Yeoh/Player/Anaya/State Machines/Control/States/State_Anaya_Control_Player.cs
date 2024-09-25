@@ -15,8 +15,7 @@ public class State_Anaya_Control_Player : BaseState
     {
         Debug.Log($"{anaya.gameObject.name} State: {Name}");
 
-        anaya.AllowPlayer = true;
-        anaya.AllowAI = false;
+        ToggleAllow(true);
     }
 
     protected override void OnUpdate(float deltaTime)
@@ -25,6 +24,7 @@ public class State_Anaya_Control_Player : BaseState
 
     protected override void OnExit()
     {
+        ToggleAllow(false);
     }
 
     void ToggleAllow(bool toggle)

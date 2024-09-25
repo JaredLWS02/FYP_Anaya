@@ -1,26 +1,25 @@
 using UnityEngine;
 
-public class State_Anaya_Commanding : BaseState
+public class State_Wolf_Control_AI_Seeking : BaseState
 {
-    public override string Name => "Commanding";
+    public override string Name => "AI Seeking";
 
-    Anaya anaya;
+    Wolf wolf;
 
-    public State_Anaya_Commanding(StateMachine_Anaya sm)
+    public State_Wolf_Control_AI_Seeking(StateMachine_Wolf_Control sm)
     {
-        anaya = sm.anaya;
+        wolf = sm.wolf;
     }
 
     protected override void OnEnter()
     {
-        Debug.Log($"{anaya.gameObject.name} State: {Name}");
+        Debug.Log($"{wolf.gameObject.name} State: {Name}");
 
         ToggleAllow(true);
     }
 
     protected override void OnUpdate(float deltaTime)
     {
-        anaya.AllowJump = false;
     }
 
     protected override void OnExit()

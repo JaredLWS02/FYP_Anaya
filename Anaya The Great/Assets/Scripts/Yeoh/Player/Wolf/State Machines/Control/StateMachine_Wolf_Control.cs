@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateMachine_Anaya : MonoBehaviour
+public class StateMachine_Wolf_Control : MonoBehaviour
 {
-    public Anaya anaya;
+    public Wolf wolf;
 
     // STATE MACHINE ================================================================================
 
@@ -17,51 +17,29 @@ public class StateMachine_Anaya : MonoBehaviour
         
         // STATES ================================================================================
 
-        State_Hub hub = new();
-        State_Anaya_Grounded grounded = new(this);
-        State_Anaya_Falling falling = new(this);
-        State_Anaya_Dashing dashing = new(this);
-        State_Anaya_Climbing climbing = new(this);
+        State_Wolf_Control_None none = new(this);
+        State_Wolf_Control_Player player = new(this);
+        State_Wolf_Control_AI ai = new(this);
 
         // HUB TRANSITIONS ================================================================================
 
-        hub.AddTransition(grounded, (timeInState) =>
+        none.AddTransition(player, (timeInState) =>
         {
             if(
-                anaya.IsGrounded() //&&
+                wolf.control == Wolf.Control.Player //&&
             ){
                 return true;
             }
             return false;
         });
 
-        hub.AddTransition(falling, (timeInState) =>
+        none.AddTransition(ai, (timeInState) =>
         {
             if(
-                !anaya.IsGrounded() //&&
+                wolf.control == Wolf.Control.AI //&&
             ){
                 return true;
             }
-            return false;
-        });
-        
-        hub.AddTransition(dashing, (timeInState) =>
-        {
-            // if(
-            //     &&
-            // ){
-            //     return true;
-            // }
-            return false;
-        });
-        
-        hub.AddTransition(climbing, (timeInState) =>
-        {
-            // if(
-            //     &&
-            // ){
-            //     return true;
-            // }
             return false;
         });
         
@@ -69,43 +47,23 @@ public class StateMachine_Anaya : MonoBehaviour
         
         // RETURN TRANSITIONS ================================================================================
 
-        grounded.AddTransition(hub, (timeInState) =>
+        player.AddTransition(none, (timeInState) =>
         {
             if(
-                !anaya.IsGrounded() //||
+                wolf.control != Wolf.Control.Player //||
             ){
                 return true;
             }
             return false;
         });
 
-        falling.AddTransition(hub, (timeInState) =>
+        ai.AddTransition(none, (timeInState) =>
         {
             if(
-                anaya.IsGrounded() //||
+                wolf.control != Wolf.Control.AI //||
             ){
                 return true;
             }
-            return false;
-        });
-
-        dashing.AddTransition(hub, (timeInState) =>
-        {
-            // if(
-            //     ||
-            // ){
-            //     return true;
-            // }
-            return false;
-        });
-
-        climbing.AddTransition(hub, (timeInState) =>
-        {
-            // if(
-            //     ||
-            // ){
-            //     return true;
-            // }
             return false;
         });
 
@@ -113,7 +71,7 @@ public class StateMachine_Anaya : MonoBehaviour
 
         // DEFAULT ================================================================================
         
-        defaultState = hub;
+        defaultState = none;
         sm.SetInitialState(defaultState);
     }
 

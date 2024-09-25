@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class State_Anaya_Commanding : BaseState
+public class State_Anaya_Falling : BaseState
 {
-    public override string Name => "Commanding";
+    public override string Name => "Falling";
 
     Anaya anaya;
 
-    public State_Anaya_Commanding(StateMachine_Anaya sm)
+    public State_Anaya_Falling(StateMachine_Anaya sm)
     {
         anaya = sm.anaya;
     }
@@ -20,7 +20,9 @@ public class State_Anaya_Commanding : BaseState
 
     protected override void OnUpdate(float deltaTime)
     {
-        anaya.AllowJump = false;
+        anaya.AllowMoveX = true;
+        anaya.AllowMoveY = false;
+        anaya.AllowJump = true;
     }
 
     protected override void OnExit()
@@ -30,6 +32,8 @@ public class State_Anaya_Commanding : BaseState
 
     void ToggleAllow(bool toggle)
     {
-
+        anaya.AllowDash = toggle;
+        anaya.AllowClimb = toggle;
+        anaya.AllowSwitch = toggle;
     }
 }

@@ -30,6 +30,7 @@ public class Wolf : MonoBehaviour
     [Header("Toggles")]
     public bool AllowMoveX;
     public bool AllowJump;
+    
     public bool AllowSwitch;
 
     // ============================================================================

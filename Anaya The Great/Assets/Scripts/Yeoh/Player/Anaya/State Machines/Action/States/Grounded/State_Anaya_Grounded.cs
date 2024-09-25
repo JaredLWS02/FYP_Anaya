@@ -101,15 +101,22 @@ public class State_Anaya_Grounded : BaseState
     {
         Debug.Log($"{anaya.gameObject.name} State: {Name}");
 
-        anaya.AllowMoveX = true;
-        anaya.AllowSwitch = true;
+        ToggleAllow(true);
     }
 
     protected override void OnUpdate(float deltaTime)
     {
+        anaya.AllowMoveX = true;
+        anaya.AllowMoveY = false;
     }
 
     protected override void OnExit()
     {
+        ToggleAllow(false);
+    }
+
+    void ToggleAllow(bool toggle)
+    {
+        anaya.AllowSwitch = toggle;
     }
 }

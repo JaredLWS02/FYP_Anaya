@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 8362866994756430681}
   - component: {fileID: 2353882106979173347}
   - component: {fileID: 1103842026340995497}
+  - component: {fileID: 3311047691422409281}
   - component: {fileID: 663988177092084772}
   - component: {fileID: 2621720484017740639}
   - component: {fileID: 8690747745023952148}
@@ -233,7 +234,20 @@ MonoBehaviour:
   AllowSwitch: 0
   control: 2
   AllowPlayer: 0
-  AllowAI: 1
+  AllowAI: 0
+--- !u!114 &3311047691422409281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566853520928753028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b24039dc1cfa2004b99b60901129e82b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wolf: {fileID: 1103842026340995497}
 --- !u!114 &663988177092084772
 MonoBehaviour:
   m_ObjectHideFlags: 0

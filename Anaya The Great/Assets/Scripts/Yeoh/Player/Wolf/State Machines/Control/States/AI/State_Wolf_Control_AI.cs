@@ -1,27 +1,27 @@
 using UnityEngine;
 
-public class State_Anaya_Control_AI : BaseState
+public class State_Wolf_Control_AI : BaseState
 {
     public override string Name => "AI Controls";
 
-    Anaya anaya;
+    Wolf wolf;
 
     // SUB STATE MACHINE ================================================================================
 
     BaseState defaultSubState;
 
-    public State_Anaya_Control_AI(StateMachine_Anaya_Control sm)
+    public State_Wolf_Control_AI(StateMachine_Wolf_Control sm)
     {
-        anaya = sm.anaya;
+        wolf = sm.wolf;
 
         subsm = new StateMachine();
         
         // SUB STATES ================================================================================
 
-        State_Anaya_Control_AI_Idle idle = new(sm);
-        State_Anaya_Control_AI_Seeking seeking = new(sm);
-        State_Anaya_Control_AI_Fleeing fleeing = new(sm);
-        State_Anaya_Control_AI_Staying staying = new(sm);
+        State_Wolf_Control_AI_Idle idle = new(sm);
+        State_Wolf_Control_AI_Seeking seeking = new(sm);
+        State_Wolf_Control_AI_Fleeing fleeing = new(sm);
+        State_Wolf_Control_AI_Staying staying = new(sm);
 
         // HUB TRANSITIONS ================================================================================
 
@@ -99,7 +99,7 @@ public class State_Anaya_Control_AI : BaseState
 
     protected override void OnEnter()
     {
-        Debug.Log($"{anaya.gameObject.name} State: {Name}");
+        Debug.Log($"{wolf.gameObject.name} State: {Name}");
 
         ToggleAllow(true);        
     }
@@ -115,6 +115,6 @@ public class State_Anaya_Control_AI : BaseState
 
     void ToggleAllow(bool toggle)
     {
-        anaya.AllowAI = toggle;
+        wolf.AllowAI = toggle;
     }
 }

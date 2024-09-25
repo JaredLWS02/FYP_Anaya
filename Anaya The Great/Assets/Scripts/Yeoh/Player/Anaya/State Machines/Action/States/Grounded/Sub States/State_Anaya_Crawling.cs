@@ -15,20 +15,21 @@ public class State_Anaya_Crawling : BaseState
     {
         Debug.Log($"{anaya.gameObject.name} State: {Name}");
 
-        anaya.AllowMoveY = false;
-        anaya.AllowJump = false;
-        anaya.AllowDash = false;
-        anaya.AllowClimb = false;
-        anaya.AllowCrawl = false;
-        anaya.AllowStand = true;
-        anaya.AllowCommand = false;
+        ToggleAllow(true);
     }
 
     protected override void OnUpdate(float deltaTime)
     {
+        anaya.AllowJump = false;
     }
 
     protected override void OnExit()
     {
+        ToggleAllow(false);
+    }
+
+    void ToggleAllow(bool toggle)
+    {
+        anaya.AllowStand = toggle;
     }
 }
