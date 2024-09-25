@@ -28,7 +28,7 @@ public class State_Anaya_Grounded : BaseState
         hub.AddTransition(standing, (timeInState) =>
         {
             if(
-                !anaya.isCrawling //&&
+                !anaya.IsCrawling() //&&
             ){
                 return true;
             }
@@ -38,7 +38,7 @@ public class State_Anaya_Grounded : BaseState
         hub.AddTransition(crawling, (timeInState) =>
         {
             if(
-                anaya.isCrawling //&&
+                anaya.IsCrawling() //&&
             ){
                 return true;
             }
@@ -62,7 +62,7 @@ public class State_Anaya_Grounded : BaseState
         standing.AddTransition(hub, (timeInState) =>
         {
             if(
-                anaya.isCrawling //||
+                anaya.IsCrawling() //||
             ){
                 return true;
             }
@@ -72,7 +72,7 @@ public class State_Anaya_Grounded : BaseState
         crawling.AddTransition(hub, (timeInState) =>
         {
             if(
-                !anaya.isCrawling //||
+                !anaya.IsCrawling() //||
             ){
                 return true;
             }
@@ -100,21 +100,16 @@ public class State_Anaya_Grounded : BaseState
     protected override void OnEnter()
     {
         Debug.Log($"{anaya.gameObject.name} State: {Name}");
+
+        anaya.AllowMoveX = true;
+        anaya.AllowSwitch = true;
     }
 
     protected override void OnUpdate(float deltaTime)
     {
-        ToggleAllow(true);
     }
 
     protected override void OnExit()
     {
-        ToggleAllow(false);
-    }
-
-    void ToggleAllow(bool toggle)
-    {
-        anaya.AllowMoveX = toggle;
-        anaya.AllowSwitch = toggle;
     }
 }

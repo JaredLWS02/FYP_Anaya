@@ -14,24 +14,21 @@ public class State_Anaya_Standing : BaseState
     protected override void OnEnter()
     {
         Debug.Log($"{anaya.gameObject.name} State: {Name}");
+
+        anaya.AllowMoveY = false;
+        anaya.AllowJump = true;
+        anaya.AllowDash = true;
+        anaya.AllowClimb = true;
+        anaya.AllowCrawl = true;
+        anaya.AllowStand = false;
+        anaya.AllowCommand = true;
     }
 
     protected override void OnUpdate(float deltaTime)
     {
-        ToggleAllow(true);
     }
 
     protected override void OnExit()
     {
-        ToggleAllow(false);
-    }
-
-    void ToggleAllow(bool toggle)
-    {
-        anaya.AllowJump = toggle;
-        anaya.AllowDash = toggle;
-        anaya.AllowClimb = toggle;
-        anaya.AllowCrawl = toggle;
-        anaya.AllowCommand = toggle;
     }
 }

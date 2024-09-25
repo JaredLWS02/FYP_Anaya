@@ -46,11 +46,6 @@ public class Anaya : MonoBehaviour
 
     // ============================================================================
 
-    [Header("Temp")]
-    public bool isCrawling;
-
-    // ============================================================================
-
     // input system
     void OnMove(InputValue value)
     {
@@ -87,5 +82,10 @@ public class Anaya : MonoBehaviour
     public bool IsGrounded()
     {
         return jump.IsGrounded();
+    }
+    
+    public bool IsCrawling()
+    {
+        return false;
     }
 }

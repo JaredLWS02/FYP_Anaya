@@ -14,16 +14,17 @@ public class State_Anaya_Control_Player : BaseState
     protected override void OnEnter()
     {
         Debug.Log($"{anaya.gameObject.name} State: {Name}");
+
+        anaya.AllowPlayer = true;
+        anaya.AllowAI = false;
     }
 
     protected override void OnUpdate(float deltaTime)
     {
-        ToggleAllow(true);
     }
 
     protected override void OnExit()
     {
-        ToggleAllow(false);
     }
 
     void ToggleAllow(bool toggle)

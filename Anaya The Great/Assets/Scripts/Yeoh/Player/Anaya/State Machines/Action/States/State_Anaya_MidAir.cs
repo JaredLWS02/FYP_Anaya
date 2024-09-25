@@ -14,24 +14,23 @@ public class State_Anaya_MidAir : BaseState
     protected override void OnEnter()
     {
         Debug.Log($"{anaya.gameObject.name} State: {Name}");
+
+        anaya.AllowMoveX = true;
+        anaya.AllowMoveY = false;
+        anaya.AllowJump = true;
+        anaya.AllowDash = true;
+        anaya.AllowClimb = true;
+        anaya.AllowCrawl = false;
+        anaya.AllowStand = false;
+        anaya.AllowSwitch = true;
+        anaya.AllowCommand = false;
     }
 
     protected override void OnUpdate(float deltaTime)
     {
-        ToggleAllow(true);
     }
 
     protected override void OnExit()
     {
-        ToggleAllow(false);
-    }
-
-    void ToggleAllow(bool toggle)
-    {
-        anaya.AllowMoveX = toggle;
-        anaya.AllowJump = toggle; // for double jump
-        anaya.AllowDash = toggle;
-        anaya.AllowClimb = toggle;
-        anaya.AllowSwitch = toggle;
     }
 }

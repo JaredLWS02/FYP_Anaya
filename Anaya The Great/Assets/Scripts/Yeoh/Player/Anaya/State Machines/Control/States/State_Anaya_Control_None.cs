@@ -14,6 +14,9 @@ public class State_Anaya_Control_None : BaseState
     protected override void OnEnter()
     {
         Debug.Log($"{anaya.gameObject.name} State: {Name}");
+
+        anaya.AllowPlayer = false;
+        anaya.AllowAI = false;
     }
 
     protected override void OnUpdate(float deltaTime)

@@ -13,7 +13,7 @@ public class SideMove : MonoBehaviour
         vehicle = GetComponent<ForceVehicle2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Move();
     }
