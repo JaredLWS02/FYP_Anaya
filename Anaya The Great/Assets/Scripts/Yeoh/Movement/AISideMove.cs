@@ -13,6 +13,11 @@ public class AISideMove : MonoBehaviour
         move = GetComponent<SideMove>();
     }
 
+    public void Move()
+    {
+        move.inputX = GetMoveDir();
+    }
+
     // ============================================================================
 
     public Transform target;
@@ -30,11 +35,6 @@ public class AISideMove : MonoBehaviour
     public float slowingRangeOffset=.5f;
 
     // ============================================================================
-
-    public void Move()
-    {
-        move.inputX = GetMoveDir();
-    }
 
     float GetMoveDir()
     {

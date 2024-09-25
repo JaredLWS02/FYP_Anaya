@@ -58,6 +58,8 @@ public class Wolf : MonoBehaviour
         move.inputX = AllowMoveX ? input_dir.x : 0;
     }
 
+    // ============================================================================
+
     // input system
     void OnJump(InputValue value)
     {
@@ -78,18 +80,18 @@ public class Wolf : MonoBehaviour
         }
     }
 
+    public bool IsGrounded()
+    {
+        return jump.IsGrounded();
+    }
+
+    // ============================================================================
+
     void TryAIMove()
     {
         if(!AllowAI) return;
         if(!IsGrounded()) return;
 
         aiMove.Move();
-    }
-
-    // ============================================================================
-
-    public bool IsGrounded()
-    {
-        return jump.IsGrounded();
     }
 }

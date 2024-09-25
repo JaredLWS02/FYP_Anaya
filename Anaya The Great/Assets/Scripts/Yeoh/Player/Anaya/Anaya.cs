@@ -65,6 +65,8 @@ public class Anaya : MonoBehaviour
         //climb.inputY = AllowMoveY ? input_dir.y : 0;
     }
 
+    // ============================================================================
+
     // input system
     void OnJump(InputValue value)
     {
@@ -85,6 +87,13 @@ public class Anaya : MonoBehaviour
         }
     }
 
+    public bool IsGrounded()
+    {
+        return jump.IsGrounded();
+    }
+
+    // ============================================================================
+
     void TryAIMove()
     {
         if(!AllowAI) return;
@@ -94,11 +103,6 @@ public class Anaya : MonoBehaviour
     }
 
     // ============================================================================
-
-    public bool IsGrounded()
-    {
-        return jump.IsGrounded();
-    }
     
     public bool IsCrawling()
     {
