@@ -746,14 +746,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7819293094575399838, guid: c83138be59ad5724fa4d82fe39551d02, type: 3}
-      propertyPath: AllowJump
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819293094575399838, guid: c83138be59ad5724fa4d82fe39551d02, type: 3}
-      propertyPath: AllowMoveX
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8594453726988538027, guid: c83138be59ad5724fa4d82fe39551d02, type: 3}
       propertyPath: m_Name
       value: Anaya

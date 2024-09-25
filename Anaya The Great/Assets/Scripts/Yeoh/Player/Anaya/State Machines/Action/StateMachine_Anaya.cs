@@ -27,21 +27,21 @@ public class StateMachine_Anaya : MonoBehaviour
 
         hub.AddTransition(grounded, (timeInState) =>
         {
-            // if(
-            //     &&
-            // ){
-            //     return true;
-            // }
+            if(
+                anaya.IsGrounded() //&&
+            ){
+                return true;
+            }
             return false;
         });
 
         hub.AddTransition(midair, (timeInState) =>
         {
-            // if(
-            //     &&
-            // ){
-            //     return true;
-            // }
+            if(
+                !anaya.IsGrounded() //&&
+            ){
+                return true;
+            }
             return false;
         });
         
@@ -71,21 +71,21 @@ public class StateMachine_Anaya : MonoBehaviour
 
         grounded.AddTransition(hub, (timeInState) =>
         {
-            // if(
-            //     ||
-            // ){
-            //     return true;
-            // }
+            if(
+                !anaya.IsGrounded() //||
+            ){
+                return true;
+            }
             return false;
         });
 
         midair.AddTransition(hub, (timeInState) =>
         {
-            // if(
-            //     ||
-            // ){
-            //     return true;
-            // }
+            if(
+                anaya.IsGrounded() //||
+            ){
+                return true;
+            }
             return false;
         });
 

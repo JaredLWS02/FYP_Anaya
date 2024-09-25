@@ -412,8 +412,10 @@ MonoBehaviour:
   AllowStand: 0
   AllowSwitch: 0
   AllowCommand: 0
+  control: 1
   AllowPlayer: 0
   AllowAI: 0
+  isCrawling: 0
 --- !u!114 &7541148995696005942
 MonoBehaviour:
   m_ObjectHideFlags: 0

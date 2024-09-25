@@ -8,7 +8,6 @@ public class State_Anaya_Grounded : BaseState
 
     // SUB STATE MACHINE ================================================================================
 
-    StateMachine subsm;
     BaseState defaultSubState;
 
     public State_Anaya_Grounded(StateMachine_Anaya sm)
@@ -28,21 +27,21 @@ public class State_Anaya_Grounded : BaseState
 
         hub.AddTransition(standing, (timeInState) =>
         {
-            // if(
-            //     &&
-            // ){
-            //     return true;
-            // }
+            if(
+                !anaya.isCrawling //&&
+            ){
+                return true;
+            }
             return false;
         });
 
         hub.AddTransition(crawling, (timeInState) =>
         {
-            // if(
-            //     &&
-            // ){
-            //     return true;
-            // }
+            if(
+                anaya.isCrawling //&&
+            ){
+                return true;
+            }
             return false;
         });
         
@@ -62,21 +61,21 @@ public class State_Anaya_Grounded : BaseState
 
         standing.AddTransition(hub, (timeInState) =>
         {
-            // if(
-            //     ||
-            // ){
-            //     return true;
-            // }
+            if(
+                anaya.isCrawling //||
+            ){
+                return true;
+            }
             return false;
         });
 
         crawling.AddTransition(hub, (timeInState) =>
         {
-            // if(
-            //     ||
-            // ){
-            //     return true;
-            // }
+            if(
+                !anaya.isCrawling //||
+            ){
+                return true;
+            }
             return false;
         });
         

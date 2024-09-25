@@ -25,21 +25,21 @@ public class StateMachine_Anaya_Control : MonoBehaviour
 
         none.AddTransition(player, (timeInState) =>
         {
-            // if(
-            //     &&
-            // ){
-            //     return true;
-            // }
+            if(
+                anaya.control == Anaya.Control.Player //&&
+            ){
+                return true;
+            }
             return false;
         });
 
         none.AddTransition(ai, (timeInState) =>
         {
-            // if(
-            //     &&
-            // ){
-            //     return true;
-            // }
+            if(
+                anaya.control == Anaya.Control.AI //&&
+            ){
+                return true;
+            }
             return false;
         });
         
@@ -49,21 +49,21 @@ public class StateMachine_Anaya_Control : MonoBehaviour
 
         player.AddTransition(none, (timeInState) =>
         {
-            // if(
-            //     ||
-            // ){
-            //     return true;
-            // }
+            if(
+                anaya.control != Anaya.Control.Player //||
+            ){
+                return true;
+            }
             return false;
         });
 
         ai.AddTransition(none, (timeInState) =>
         {
-            // if(
-            //     ||
-            // ){
-            //     return true;
-            // }
+            if(
+                anaya.control != Anaya.Control.AI //||
+            ){
+                return true;
+            }
             return false;
         });
 

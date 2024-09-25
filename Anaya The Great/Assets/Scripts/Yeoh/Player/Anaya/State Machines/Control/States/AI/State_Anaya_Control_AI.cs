@@ -8,7 +8,6 @@ public class State_Anaya_Control_AI : BaseState
 
     // SUB STATE MACHINE ================================================================================
 
-    StateMachine subsm;
     BaseState defaultSubState;
 
     public State_Anaya_Control_AI(StateMachine_Anaya_Control sm)

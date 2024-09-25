@@ -30,7 +30,7 @@ public abstract class BaseState
 
     public float TimeInState => timeInState;
 
-    protected StateMachine subStateMachine;
+    protected StateMachine subsm;
 
     public void Enter()
     {
@@ -39,7 +39,8 @@ public abstract class BaseState
         OnEnter();
 
         // only if got sub sm
-        subStateMachine?.SetInitialState(subStateMachine.currentState);
+        if(subsm!=null)
+        subsm.SetInitialState(subsm.currentState);
     }
 
     public void Update(float deltaTime)
@@ -49,7 +50,8 @@ public abstract class BaseState
         timeInState = Time.time - timeEnteredState;
 
         // only if got sub sm
-        subStateMachine?.Tick(deltaTime);
+        if(subsm!=null)
+        subsm.Tick(deltaTime);
 
         OnUpdate(deltaTime);
     }
@@ -60,7 +62,8 @@ public abstract class BaseState
         OnExit();
         
         // only if got sub sm
-        subStateMachine?.currentState.Exit();
+        if(subsm!=null)
+        subsm.currentState.Exit();
     }
 
     public void AddTransition(BaseState to, Func<float, bool> predicate)
@@ -74,9 +77,9 @@ public abstract class BaseState
     public bool TryGetNextTransition(out BaseState state)
     {
         // only if got sub sm
-        if(subStateMachine!=null)
+        if(subsm!=null)
         {
-            if(subStateMachine.currentState.TryGetNextTransition(out state))
+            if(subsm.currentState.TryGetNextTransition(out state))
             {
                 return true;
             }
