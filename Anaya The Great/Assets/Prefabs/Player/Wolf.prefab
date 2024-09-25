@@ -326,7 +326,7 @@ MonoBehaviour:
   flee: 0
   departure: 1
   fleeRange: 4
-  slowingRangeOffset: 0.5
+  slowingRangeOffset: 2
 --- !u!1 &7546483653363257408
 GameObject:
   m_ObjectHideFlags: 0

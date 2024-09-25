@@ -520,4 +520,4 @@ MonoBehaviour:
   flee: 0
   departure: 1
   fleeRange: 4
-  slowingRangeOffset: 0.5
+  slowingRangeOffset: 2

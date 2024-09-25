@@ -13,7 +13,7 @@ public class State_Anaya_Control_AI_Idle : BaseState
 
     protected override void OnEnter()
     {
-        Debug.Log($"{anaya.gameObject.name} State: {Name}");
+        Debug.Log($"{anaya.gameObject.name} SubState: {Name}");
 
         ToggleAllow(true);
     }

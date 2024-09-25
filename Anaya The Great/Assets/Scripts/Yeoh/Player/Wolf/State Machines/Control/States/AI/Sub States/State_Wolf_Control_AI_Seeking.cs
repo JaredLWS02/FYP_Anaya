@@ -13,7 +13,7 @@ public class State_Wolf_Control_AI_Seeking : BaseState
 
     protected override void OnEnter()
     {
-        Debug.Log($"{wolf.gameObject.name} State: {Name}");
+        Debug.Log($"{wolf.gameObject.name} SubState: {Name}");
 
         ToggleAllow(true);
     }
