@@ -21,10 +21,7 @@ public class SideMove : MonoBehaviour
     // ============================================================================
 
     public bool canMove=true;
-    
     public float inputX;
-    public bool faceR=true;
-    public bool reverse;
 
     void Move()
     {
@@ -37,6 +34,12 @@ public class SideMove : MonoBehaviour
 
         TryFlip();
     }
+
+    // ============================================================================
+
+    [Header("Flip")]
+    public bool faceR=true;
+    public bool reverse;
 
     void TryFlip()
     {

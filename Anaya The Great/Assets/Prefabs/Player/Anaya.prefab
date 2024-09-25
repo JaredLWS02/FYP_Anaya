@@ -290,6 +290,7 @@ GameObject:
   - component: {fileID: 9210262053067323854}
   - component: {fileID: 448037758320840154}
   - component: {fileID: 5939281134588140339}
+  - component: {fileID: 482432443129881728}
   m_Layer: 3
   m_Name: Anaya
   m_TagString: Player
@@ -415,7 +416,6 @@ MonoBehaviour:
   control: 1
   AllowPlayer: 0
   AllowAI: 0
-  isCrawling: 0
 --- !u!114 &7541148995696005942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -502,3 +502,22 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
+--- !u!114 &482432443129881728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8594453726988538027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2899b4a6acf0634f9ca09a32136305a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  arrival: 1
+  stoppingRange: 1.5
+  flee: 0
+  departure: 1
+  fleeRange: 4
+  slowingRangeOffset: 0.5

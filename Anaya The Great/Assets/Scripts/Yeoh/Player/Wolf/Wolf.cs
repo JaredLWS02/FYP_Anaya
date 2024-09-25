@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Jump2D))]
 [RequireComponent(typeof(AISideMove))]
 
-public class Anaya : MonoBehaviour
+public class Wolf : MonoBehaviour
 {
     SideMove move;
     Jump2D jump;
@@ -29,14 +29,8 @@ public class Anaya : MonoBehaviour
 
     [Header("Toggles")]
     public bool AllowMoveX;
-    public bool AllowMoveY;
     public bool AllowJump;
-    public bool AllowDash;
-    public bool AllowClimb;
-    public bool AllowCrawl;
-    public bool AllowStand;
     public bool AllowSwitch;
-    public bool AllowCommand;
 
     // ============================================================================
 
@@ -48,7 +42,7 @@ public class Anaya : MonoBehaviour
     }
 
     [Header("Control")]
-    public Control control = Control.Player;
+    public Control control = Control.AI;
     public bool AllowPlayer;
     public bool AllowAI;
 
@@ -62,7 +56,6 @@ public class Anaya : MonoBehaviour
         Vector2 input_dir = value.Get<Vector2>();
 
         move.inputX = AllowMoveX ? input_dir.x : 0;
-        //climb.inputY = AllowMoveY ? input_dir.y : 0;
     }
 
     // input system
@@ -98,10 +91,5 @@ public class Anaya : MonoBehaviour
     public bool IsGrounded()
     {
         return jump.IsGrounded();
-    }
-    
-    public bool IsCrawling()
-    {
-        return false;
     }
 }
