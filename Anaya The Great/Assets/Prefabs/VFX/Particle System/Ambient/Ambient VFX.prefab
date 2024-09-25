@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1255719167315238777}
   - component: {fileID: 6149318192216459600}
   - component: {fileID: 4742925776937245705}
-  - component: {fileID: 7284990921782795278}
+  - component: {fileID: 1146954061849296203}
   m_Layer: 0
   m_Name: Ambient VFX
   m_TagString: Untagged
@@ -4840,7 +4840,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &7284990921782795278
+--- !u!114 &1146954061849296203
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4849,7 +4849,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5800512631994957167}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fb9965389b2ccc429c6168666edf347, type: 3}
+  m_Script: {fileID: 11500000, guid: 388137ca7d26aa6489d0f51ecf165a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   constrainTo: {fileID: 0}

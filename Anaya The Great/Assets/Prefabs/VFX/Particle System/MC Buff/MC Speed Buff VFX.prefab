@@ -4771,7 +4771,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   constrainTo: {fileID: 0}
   fixedUpdate: 1
-  positionMult: {x: 0, y: 0, z: 0}
+  positionMult: {x: 1, y: 1, z: 1}
   rotationMult: {x: 0, y: 0, z: 0}
   scaleMult: {x: 0, y: 0, z: 0}
   positionOffset: {x: 0, y: 0, z: 0}

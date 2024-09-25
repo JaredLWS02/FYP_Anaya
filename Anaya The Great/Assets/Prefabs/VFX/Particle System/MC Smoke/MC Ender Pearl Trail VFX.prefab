@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2631370458168941538}
   - component: {fileID: 5659627107309298238}
   - component: {fileID: 4384328594487495954}
-  - component: {fileID: 3699967217281007251}
+  - component: {fileID: 384367809899558221}
   m_Layer: 0
   m_Name: MC Ender Pearl Trail VFX
   m_TagString: Untagged
@@ -4797,7 +4797,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1201729199
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -4831,7 +4831,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &3699967217281007251
+--- !u!114 &384367809899558221
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4840,7 +4840,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7888787837821386156}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fb9965389b2ccc429c6168666edf347, type: 3}
+  m_Script: {fileID: 11500000, guid: 388137ca7d26aa6489d0f51ecf165a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   constrainTo: {fileID: 0}

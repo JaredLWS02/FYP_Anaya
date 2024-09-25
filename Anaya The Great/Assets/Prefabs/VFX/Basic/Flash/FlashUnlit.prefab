@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6532194084069076524}
   - component: {fileID: 1921916962919736618}
   - component: {fileID: 7240106344081047025}
-  - component: {fileID: 918518755793909602}
-  - component: {fileID: 4308273486754926032}
+  - component: {fileID: 4617369487908565238}
+  - component: {fileID: 948814597062006855}
   m_Layer: 5
   m_Name: FlashUnlit
   m_TagString: Untagged
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1201729199
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 72b6e8d86a4e4ba4396dfbc34f447c8d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -108,7 +108,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &918518755793909602
+--- !u!114 &4617369487908565238
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 324769258230668247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8462864776ba5ff42b9c2097112403a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e4493e6b9eb1a64b8cab7d6c0e17f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   randomTranslateX: 0
@@ -134,11 +134,11 @@ MonoBehaviour:
   randomScaleY: 1
   randomScaleZ: 1
   minScale: 0.75
-  maxScale: 1
+  maxScale: 1.1
   randomMirrorX: 0
   randomMirrorY: 0
   randomMirrorZ: 0
---- !u!114 &4308273486754926032
+--- !u!114 &948814597062006855
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 324769258230668247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f77c0b3dfb6cc3499b10d5253a53d4d, type: 3}
+  m_Script: {fileID: 11500000, guid: 59530bdbb6f9a0849be74e1d5fdaf0f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   offsetColor: {x: 0, y: 0, z: 0, w: 0}
