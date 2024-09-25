@@ -30,11 +30,16 @@ public abstract class BaseState
 
     public float TimeInState => timeInState;
 
+    protected StateMachine subStateMachine;
+
     public void Enter()
     {
         //Debug.Log($"Entering {Name}");
         timeEnteredState = Time.time;
         OnEnter();
+
+        // only if got sub sm
+        subStateMachine?.SetInitialState(subStateMachine.currentState);
     }
 
     public void Update(float deltaTime)
@@ -43,6 +48,9 @@ public abstract class BaseState
         // But since we already recorded the exact time state is entered, we can get away with this
         timeInState = Time.time - timeEnteredState;
 
+        // only if got sub sm
+        subStateMachine?.Tick(deltaTime);
+
         OnUpdate(deltaTime);
     }
 
@@ -50,6 +58,9 @@ public abstract class BaseState
     {
         //Debug.Log($"Exiting {Name}");
         OnExit();
+        
+        // only if got sub sm
+        subStateMachine?.currentState.Exit();
     }
 
     public void AddTransition(BaseState to, Func<float, bool> predicate)
@@ -62,6 +73,15 @@ public abstract class BaseState
     // when true/success, the out variable should be assigned to something that is not null or default.
     public bool TryGetNextTransition(out BaseState state)
     {
+        // only if got sub sm
+        if(subStateMachine!=null)
+        {
+            if(subStateMachine.currentState.TryGetNextTransition(out state))
+            {
+                return true;
+            }
+        }
+
         foreach (var t in Transitions)
         {
             // This is the Func<float, bool> predicate in TransitionPair
