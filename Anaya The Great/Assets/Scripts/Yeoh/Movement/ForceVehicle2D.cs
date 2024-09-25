@@ -36,7 +36,7 @@ public class ForceVehicle2D : MonoBehaviour
     public float acceleration=10;
     public float deceleration=10;
 
-    void Move(float magnitude, Vector3 direction)
+    public void Move(float magnitude, Vector3 direction)
     {
         float accelRate = Mathf.Abs(magnitude)>0 ? acceleration : deceleration; // use decelerate value if no input, and vice versa
     
@@ -102,7 +102,7 @@ public class ForceVehicle2D : MonoBehaviour
         velocity = Round(rb.velocity.magnitude, 2);
     }
 
-    float Round(float num, int decimalPlaces)
+    public float Round(float num, int decimalPlaces)
     {
         int factor=1;
 

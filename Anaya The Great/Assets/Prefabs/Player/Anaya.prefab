@@ -287,6 +287,9 @@ GameObject:
   - component: {fileID: 7819293094575399838}
   - component: {fileID: 7541148995696005942}
   - component: {fileID: 9195991858592972193}
+  - component: {fileID: 9210262053067323854}
+  - component: {fileID: 448037758320840154}
+  - component: {fileID: 5939281134588140339}
   m_Layer: 3
   m_Name: Anaya
   m_TagString: Player
@@ -437,3 +440,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anaya: {fileID: 7819293094575399838}
+--- !u!114 &9210262053067323854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8594453726988538027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 863b8763f6ba15e48af6ea96c1cb4063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 3
+  defMaxSpeed: 0
+  acceleration: 10
+  deceleration: 10
+  turnSpeed: 10
+  defTurnSpeed: 0
+  linearTurn: 0
+  angleOffset: -90
+  velocity: 0
+--- !u!114 &448037758320840154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8594453726988538027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e635e171bbcbd3d46a3c45af717d37ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canMove: 1
+  inputX: 0
+  faceR: 1
+  reverse: 0
+--- !u!114 &5939281134588140339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8594453726988538027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b3ab7c948d3194da6b45b8b623dd73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canJump: 1
+  jumpForce: 8
+  extraJumps: 1
+  jumpBufferTime: 0.2
+  coyoteTime: 0.2
+  jumpCutMult: 0.5
+  boxSize: {x: 0.2, y: 0.05}
+  boxCenterOffset: {x: 0, y: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
