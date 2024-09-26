@@ -46,6 +46,9 @@ public class Jump2D : MonoBehaviour
 
     void Jump()
     {
+        if(isJumpCooling) return;
+        StartCoroutine(JumpCooling());
+
         rb.velocity = new Vector2(rb.velocity.x, 0);
 
         rb.AddForce(Vector2.up*jumpForce, ForceMode2D.Impulse);
@@ -59,6 +62,8 @@ public class Jump2D : MonoBehaviour
     [Header("Extra Jumps")]
     public int extraJumps=1;
     int extraJumpsLeft;
+    public float jumpCooldown=.1f;
+    bool isJumpCooling;
 
     void UpdateExtraJumps()
     {
@@ -66,6 +71,13 @@ public class Jump2D : MonoBehaviour
         {
             extraJumpsLeft = extraJumps;
         }
+    }
+
+    IEnumerator JumpCooling()
+    {
+        isJumpCooling=true;
+        yield return new WaitForSeconds(jumpCooldown);
+        isJumpCooling=false;
     }
 
     // Jump Buffer ============================================================================

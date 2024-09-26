@@ -298,8 +298,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canJump: 1
-  jumpForce: 8
+  jumpForce: 10
   extraJumps: 1
+  jumpCooldown: 0.1
   jumpBufferTime: 0.2
   coyoteTime: 0.2
   jumpCutMult: 0.5
