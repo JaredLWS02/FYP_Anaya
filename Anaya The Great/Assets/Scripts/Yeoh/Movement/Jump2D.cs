@@ -62,7 +62,7 @@ public class Jump2D : MonoBehaviour
     [Header("Extra Jumps")]
     public int extraJumps=1;
     int extraJumpsLeft;
-    public float jumpCooldown=.1f;
+    public float jumpCooldown=.2f;
     bool isJumpCooling;
 
     void UpdateExtraJumps()
