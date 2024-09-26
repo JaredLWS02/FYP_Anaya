@@ -290,7 +290,9 @@ GameObject:
   - component: {fileID: 9210262053067323854}
   - component: {fileID: 448037758320840154}
   - component: {fileID: 5939281134588140339}
-  - component: {fileID: 482432443129881728}
+  - component: {fileID: 4630440818420533794}
+  - component: {fileID: 651222682976775433}
+  - component: {fileID: 2674342118891313319}
   m_Layer: 3
   m_Name: Anaya
   m_TagString: Player
@@ -503,7 +505,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
---- !u!114 &482432443129881728
+--- !u!114 &4630440818420533794
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -512,13 +514,58 @@ MonoBehaviour:
   m_GameObject: {fileID: 8594453726988538027}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2899b4a6acf0634f9ca09a32136305a, type: 3}
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
+--- !u!114 &651222682976775433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8594453726988538027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e66504453c74d34dbc5c2d924309305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPos: {x: 0, y: 0, z: 0}
+  arrival: 0
+  stoppingRange: 0.5
+  slowingRangeOffset: 5
+--- !u!114 &2674342118891313319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8594453726988538027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30e6318a540213d469687051e50c2fba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  arrival: 1
-  stoppingRange: 1.5
-  flee: 0
-  departure: 1
-  fleeRange: 4
-  slowingRangeOffset: 2
+  targetOffset: {x: 0, y: 0.5, z: 0}
+  selfOffset: {x: 0, y: 0.5, z: 0}
+  UpdatePathInterval: 0.25
+  startingNode: 2
+  nextNodeRange: 1
+  jumpIfAboveHeight: 1.5
+  jumpCutIfBelowHeight: 0.5

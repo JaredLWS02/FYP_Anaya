@@ -115,7 +115,9 @@ GameObject:
   - component: {fileID: 663988177092084772}
   - component: {fileID: 2621720484017740639}
   - component: {fileID: 8690747745023952148}
-  - component: {fileID: 8880686158211482073}
+  - component: {fileID: 2787995565073300372}
+  - component: {fileID: 728497211911257957}
+  - component: {fileID: 307568496759478739}
   m_Layer: 3
   m_Name: Wolf
   m_TagString: Player
@@ -309,7 +311,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
---- !u!114 &8880686158211482073
+--- !u!114 &2787995565073300372
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -318,16 +320,61 @@ MonoBehaviour:
   m_GameObject: {fileID: 4566853520928753028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2899b4a6acf0634f9ca09a32136305a, type: 3}
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
+--- !u!114 &728497211911257957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566853520928753028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e66504453c74d34dbc5c2d924309305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPos: {x: 0, y: 0, z: 0}
+  arrival: 0
+  stoppingRange: 0.5
+  slowingRangeOffset: 5
+--- !u!114 &307568496759478739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566853520928753028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30e6318a540213d469687051e50c2fba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  arrival: 1
-  stoppingRange: 1.5
-  flee: 0
-  departure: 1
-  fleeRange: 4
-  slowingRangeOffset: 2
+  targetOffset: {x: 0, y: 0.5, z: 0}
+  selfOffset: {x: 0, y: 0.5, z: 0}
+  UpdatePathInterval: 0.25
+  startingNode: 2
+  nextNodeRange: 1
+  jumpIfAboveHeight: 1.5
+  jumpCutIfBelowHeight: 0.5
 --- !u!1 &7546483653363257408
 GameObject:
   m_ObjectHideFlags: 0

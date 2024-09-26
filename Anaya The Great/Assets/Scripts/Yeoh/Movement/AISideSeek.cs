@@ -15,27 +15,20 @@ public class AISideSeek : MonoBehaviour
 
     public void Move()
     {
-        move.inputX = GetMoveDir();
+        move.inputX = GetSeekDir();
     }
 
     // ============================================================================
 
-    public Transform target;
-    
     [HideInInspector]
-    public bool arrival;
+    public Vector3 targetPos;
 
     [Header("Arrival")]
-    public float stoppingRange=.05f;
-    public float slowingRangeOffset=.5f;
+    public bool arrival=true;
+    public float stoppingRange=2;
+    public float slowingRangeOffset=2;
 
     // ============================================================================
-
-    float GetMoveDir()
-    {
-        if(!target) return 0;
-        return GetSeekDir();
-    }
 
     float GetSeekDir()
     {
@@ -44,7 +37,7 @@ public class AISideSeek : MonoBehaviour
 
         if(arrival)
         {
-            float distance = Mathf.Abs(target.position.x - transform.position.x);
+            float distance = Mathf.Abs(targetPos.x - transform.position.x);
 
             if(distance <= stoppingRange)
             {
@@ -61,6 +54,6 @@ public class AISideSeek : MonoBehaviour
         }
         else speed = max_speed;
 
-        return target.position.x >= transform.position.x ? speed : -speed;
+        return targetPos.x >= transform.position.x ? speed : -speed;
     }
 }

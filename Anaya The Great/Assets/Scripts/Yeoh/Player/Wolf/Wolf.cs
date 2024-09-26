@@ -5,19 +5,19 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(SideMove))]
 [RequireComponent(typeof(Jump2D))]
-[RequireComponent(typeof(AISideMove))]
+[RequireComponent(typeof(AISidePathseeker))]
 
 public class Wolf : MonoBehaviour
 {
     SideMove move;
     Jump2D jump;
-    AISideMove aiMove;
+    AISidePathseeker seeker;
 
     void Awake()
     {
         move = GetComponent<SideMove>();
         jump = GetComponent<Jump2D>();
-        aiMove = GetComponent<AISideMove>();
+        seeker = GetComponent<AISidePathseeker>();
     }
 
     void FixedUpdate()
@@ -91,8 +91,7 @@ public class Wolf : MonoBehaviour
     void TryAIMove()
     {
         if(!AllowAI) return;
-        if(!IsGrounded()) return;
-
-        aiMove.Move();
+        
+        seeker.Move();
     }
 }
