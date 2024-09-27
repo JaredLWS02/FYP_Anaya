@@ -110,11 +110,13 @@ GameObject:
   - component: {fileID: 6357616699748673511}
   - component: {fileID: 8362866994756430681}
   - component: {fileID: 2353882106979173347}
-  - component: {fileID: 1103842026340995497}
+  - component: {fileID: 6337178204564506736}
   - component: {fileID: 3311047691422409281}
+  - component: {fileID: 1103842026340995497}
   - component: {fileID: 663988177092084772}
   - component: {fileID: 2621720484017740639}
   - component: {fileID: 8690747745023952148}
+  - component: {fileID: 8254885034737184713}
   - component: {fileID: 2787995565073300372}
   - component: {fileID: 728497211911257957}
   - component: {fileID: 307568496759478739}
@@ -216,10 +218,10 @@ MonoBehaviour:
     m_ActionName: Wolf/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Anaya
+  m_DefaultActionMap: ab82e1f2-e2dd-4f1b-87f6-f0620c2445ce
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1103842026340995497
+--- !u!114 &6337178204564506736
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -228,15 +230,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4566853520928753028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac4743336a985e044a223c39c13e370e, type: 3}
+  m_Script: {fileID: 11500000, guid: c243ce33fa331c3459fce6a85560b2d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AllowMoveX: 1
-  AllowJump: 1
-  AllowSwitch: 0
-  control: 2
-  AllowPlayer: 0
-  AllowAI: 0
+  type: 2
 --- !u!114 &3311047691422409281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,7 +246,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24039dc1cfa2004b99b60901129e82b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pilot: {fileID: 0}
   wolf: {fileID: 1103842026340995497}
+--- !u!114 &1103842026340995497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566853520928753028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac4743336a985e044a223c39c13e370e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pilot: {fileID: 0}
+  ai: {fileID: 0}
+  AllowMoveX: 1
+  AllowJump: 1
+  AllowSwitch: 0
 --- !u!114 &663988177092084772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canMove: 1
-  inputX: 0
+  dirX: 0
   faceR: 1
   reverse: 0
 --- !u!114 &8690747745023952148
@@ -300,7 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canJump: 1
-  jumpForce: 10
+  jumpForce: 9
   extraJumps: 1
   jumpCooldown: 0.2
   jumpBufferTime: 0.2
@@ -311,6 +326,19 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
+--- !u!114 &8254885034737184713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566853520928753028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35af61f2a100611448ad8ea8c5bf3378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action: 1
 --- !u!114 &2787995565073300372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,10 +399,7 @@ MonoBehaviour:
   targetOffset: {x: 0, y: 0.5, z: 0}
   selfOffset: {x: 0, y: 0.5, z: 0}
   UpdatePathInterval: 0.25
-  startingNode: 2
-  nextNodeRange: 1
-  jumpIfAboveHeight: 1.5
-  jumpCutIfBelowHeight: 0.5
+  startingNodeIndex: 2
 --- !u!1 &7546483653363257408
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,7 +22,6 @@ public class State_Anaya_Dashing : BaseState
     {
         anaya.AllowMoveX = false;
         anaya.AllowMoveY = false;
-        anaya.AllowJump = false;
     }
 
     protected override void OnExit()

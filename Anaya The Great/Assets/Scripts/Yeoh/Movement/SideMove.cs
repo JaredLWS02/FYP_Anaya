@@ -21,16 +21,16 @@ public class SideMove : MonoBehaviour
     // ============================================================================
 
     public bool canMove=true;
-    public float inputX;
+    public float dirX;
 
     void Move()
     {
-        if(!canMove) return;
+        if(!canMove) dirX=0;
 
-        inputX = vehicle.Round(inputX, 1);
-        inputX = Mathf.Clamp(inputX, -1, 1);
+        dirX = vehicle.Round(dirX, 1);
+        dirX = Mathf.Clamp(dirX, -1, 1);
 
-        vehicle.Move(vehicle.maxSpeed * inputX, Vector2.right);
+        vehicle.Move(vehicle.maxSpeed * dirX, Vector2.right);
 
         TryFlip();
     }
@@ -45,14 +45,14 @@ public class SideMove : MonoBehaviour
     {
         if(reverse)
         {
-            if((inputX>0 && faceR) || (inputX<0 && !faceR))
+            if((dirX>0 && faceR) || (dirX<0 && !faceR))
             {
                 Flip();
             }
         }
         else
         {
-            if((inputX<0 && faceR) || (inputX>0 && !faceR))
+            if((dirX<0 && faceR) || (dirX>0 && !faceR))
             {
                 Flip();
             }

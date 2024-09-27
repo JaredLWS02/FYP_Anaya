@@ -13,9 +13,7 @@ public class EventManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
         Current = this;
-        //DontDestroyOnLoad(gameObject); // Persist across scene changes
     }
 
     // ==================================================================================================================
@@ -34,27 +32,41 @@ public class EventManager : MonoBehaviour
         if(Current!=this) Destroy(gameObject);
     }
 
-    // Actions ==================================================================================================================
-
-    public event Action<GameObject> AutoJumpEvent;
-
-    public void OnAutoJump(GameObject jumper)
-    {
-        AutoJumpEvent?.Invoke(jumper);
-    }   
-
-    // Combat ==================================================================================================================
+    // Actors ==================================================================================================================
 
     public event Action<GameObject> SpawnEvent;
-    public event Action<GameObject> AttackEvent;
-    public event Action<GameObject, GameObject, HurtInfo> HitEvent; // ignores iframe
-    public event Action<GameObject, GameObject, HurtInfo> HurtEvent; // respects iframe
-    public event Action<GameObject, GameObject, HurtInfo> DeathEvent;
 
     public void OnSpawn(GameObject spawned)
     {
         SpawnEvent?.Invoke(spawned);
-    }    
+    }
+
+    // Actions ==================================================================================================================
+
+    public event Action<GameObject, float> MoveXEvent;
+    public event Action<GameObject, float> MoveYEvent;
+    public event Action<GameObject, float> JumpEvent;
+
+    public void OnMoveX(GameObject mover, float input_x)
+    {
+        MoveXEvent?.Invoke(mover, input_x);
+    }   
+    public void OnMoveY(GameObject mover, float input_y)
+    {
+        MoveYEvent?.Invoke(mover, input_y);
+    }   
+    public void OnJump(GameObject jumper, float input)
+    {
+        JumpEvent?.Invoke(jumper, input);
+    }   
+    
+    // Combat ==================================================================================================================
+
+    public event Action<GameObject> AttackEvent;
+    public event Action<GameObject, GameObject, HurtInfo> HitEvent; // ignores iframe
+    public event Action<GameObject, GameObject, HurtInfo> HurtEvent; // respects iframe
+    public event Action<GameObject, GameObject, HurtInfo> DeathEvent;
+   
     public void OnAttack(GameObject attacker)
     {
         AttackEvent?.Invoke(attacker);

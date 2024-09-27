@@ -1,81 +1,101 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Pilot))]
 [RequireComponent(typeof(SideMove))]
 [RequireComponent(typeof(Jump2D))]
-[RequireComponent(typeof(AISidePathseeker))]
+[RequireComponent(typeof(WolfAI))]
 
 public class Wolf : MonoBehaviour
 {
+    [HideInInspector]
+    public Pilot pilot;
     SideMove move;
     Jump2D jump;
-    AISidePathseeker seeker;
+    [HideInInspector]
+    public WolfAI ai;
 
     void Awake()
     {
+        pilot = GetComponent<Pilot>();
         move = GetComponent<SideMove>();
         jump = GetComponent<Jump2D>();
-        seeker = GetComponent<AISidePathseeker>();
+        ai = GetComponent<WolfAI>();
     }
 
-    void FixedUpdate()
+    // Event Manager ============================================================================
+
+    void OnEnable()
     {
-        TryAIMove();
+        EventManager.Current.MoveXEvent += MoveX;
+        EventManager.Current.MoveYEvent += MoveY;
+        EventManager.Current.JumpEvent += Jump;
+    }
+    void OnDisable()
+    {
+        EventManager.Current.MoveXEvent -= MoveX;
+        EventManager.Current.MoveYEvent -= MoveY;
+        EventManager.Current.JumpEvent -= Jump;
     }
 
     // ============================================================================
 
+    void Update()
+    {
+        TryStopMove();
+    }
+
+    // Actions ============================================================================
+
     [Header("Toggles")]
     public bool AllowMoveX;
+
     public bool AllowJump;
-    
     public bool AllowSwitch;
 
     // ============================================================================
 
-    public enum Control
+    void MoveX(GameObject mover, float input_x)
     {
-        None,
-        Player,
-        AI,
+        if(mover!=gameObject) return;
+
+        if(!AllowMoveX) return;
+
+        move.dirX = input_x;
     }
 
-    [Header("Control")]
-    public Control control = Control.AI;
-    public bool AllowPlayer;
-    public bool AllowAI;
+    void MoveY(GameObject mover, float input_y)
+    {
+        if(mover!=gameObject) return;
+
+        //if(!AllowMoveY) return;
+
+        //climb.inputY = input_y;
+    }
+
+    void TryStopMove()
+    {
+        if(pilot.type == Pilot.Type.None || !AllowMoveX)
+        move.dirX = 0;
+
+        //if(pilot.type == Pilot.Type.None || !AllowMoveY)
+        //climb.inputY = 0;
+    }
 
     // ============================================================================
 
-    // input system
-    void OnMove(InputValue value)
+    void Jump(GameObject jumper, float input)
     {
-        if(!AllowPlayer) return;
+        if(jumper!=gameObject) return;
 
-        Vector2 input_dir = value.Get<Vector2>();
-
-        move.inputX = AllowMoveX ? input_dir.x : 0;
-    }
-
-    // ============================================================================
-
-    // input system
-    void OnJump(InputValue value)
-    {
-        if(!AllowPlayer) return;
         if(!AllowJump) return;
 
-        float input = value.Get<float>();
-
-        //press
-        if(input>0)
+        if(input>0) //press
         {
             jump.JumpBuffer();
         }
-        //release
-        else
+        else //release
         {
             jump.JumpCut();
         }
@@ -86,12 +106,4 @@ public class Wolf : MonoBehaviour
         return jump.IsGrounded();
     }
 
-    // ============================================================================
-
-    void TryAIMove()
-    {
-        if(!AllowAI) return;
-        
-        seeker.Move();
-    }
 }

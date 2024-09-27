@@ -1,37 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Pilot))]
 [RequireComponent(typeof(SideMove))]
 [RequireComponent(typeof(Jump2D))]
-[RequireComponent(typeof(AISidePathseeker))]
+[RequireComponent(typeof(AnayaAI))]
 
 public class Anaya : MonoBehaviour
 {
+    [HideInInspector]
+    public Pilot pilot;
     SideMove move;
     Jump2D jump;
-    AISidePathseeker seeker;
+    [HideInInspector]
+    public AnayaAI ai;
 
     void Awake()
     {
+        pilot = GetComponent<Pilot>();
         move = GetComponent<SideMove>();
         jump = GetComponent<Jump2D>();
-        seeker = GetComponent<AISidePathseeker>();
+        ai = GetComponent<AnayaAI>();
     }
 
-    void FixedUpdate()
+    // Event Manager ============================================================================
+
+    void OnEnable()
     {
-        TryAIMove();
+        EventManager.Current.MoveXEvent += MoveX;
+        EventManager.Current.MoveYEvent += MoveY;
+        EventManager.Current.JumpEvent += Jump;
+    }
+    void OnDisable()
+    {
+        EventManager.Current.MoveXEvent -= MoveX;
+        EventManager.Current.MoveYEvent -= MoveY;
+        EventManager.Current.JumpEvent -= Jump;
     }
 
     // ============================================================================
 
+    void Update()
+    {
+        TryStopMove();
+    }
+
+    // Actions ============================================================================
+
     [Header("Toggles")]
     public bool AllowMoveX;
     public bool AllowMoveY;
-    public bool AllowJump;
     
+    public bool AllowJump;
     public bool AllowDash;
     public bool AllowClimb;
     public bool AllowCrawl;
@@ -41,48 +62,46 @@ public class Anaya : MonoBehaviour
 
     // ============================================================================
 
-    public enum Control
+    void MoveX(GameObject mover, float input_x)
     {
-        None,
-        Player,
-        AI,
+        if(mover!=gameObject) return;
+
+        if(!AllowMoveX) return;
+
+        move.dirX = input_x;
     }
 
-    [Header("Control")]
-    public Control control = Control.Player;
-    public bool AllowPlayer;
-    public bool AllowAI;
-
-    // ============================================================================
-
-    // input system
-    void OnMove(InputValue value)
+    void MoveY(GameObject mover, float input_y)
     {
-        if(!AllowPlayer) return;
+        if(mover!=gameObject) return;
 
-        Vector2 input_dir = value.Get<Vector2>();
+        if(!AllowMoveY) return;
 
-        move.inputX = AllowMoveX ? input_dir.x : 0;
-        //climb.inputY = AllowMoveY ? input_dir.y : 0;
+        //climb.inputY = input_y;
     }
 
+    void TryStopMove()
+    {
+        if(pilot.type == Pilot.Type.None || !AllowMoveX)
+        move.dirX = 0;
+
+        //if(pilot.type == Pilot.Type.None || !AllowMoveY)
+        //climb.inputY = 0;
+    }
+    
     // ============================================================================
 
-    // input system
-    void OnJump(InputValue value)
+    void Jump(GameObject jumper, float input)
     {
-        if(!AllowPlayer) return;
+        if(jumper!=gameObject) return;
+
         if(!AllowJump) return;
 
-        float input = value.Get<float>();
-
-        //press
-        if(input>0)
+        if(input>0) //press
         {
             jump.JumpBuffer();
         }
-        //release
-        else
+        else //release
         {
             jump.JumpCut();
         }
@@ -95,17 +114,9 @@ public class Anaya : MonoBehaviour
 
     // ============================================================================
 
-    void TryAIMove()
-    {
-        if(!AllowAI) return;
-
-        seeker.Move();
-    }
-
-    // ============================================================================
-    
     public bool IsCrawling()
     {
         return false;
     }
+
 }

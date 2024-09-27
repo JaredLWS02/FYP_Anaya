@@ -29,6 +29,6 @@ public class State_Wolf_Control_Player : BaseState
 
     void ToggleAllow(bool toggle)
     {
-        wolf.AllowPlayer = toggle;
+        
     }
 }

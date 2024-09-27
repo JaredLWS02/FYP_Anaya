@@ -27,31 +27,31 @@ public class State_Anaya_Control_AI : BaseState
 
         idle.AddTransition(seeking, (timeInState) =>
         {
-            // if(
-            //     &&
-            // ){
-            //     return true;
-            // }
+            if(
+                anaya.ai.action == AnayaAI.Action.Seeking //&&
+            ){
+                return true;
+            }
             return false;
         });
         
         idle.AddTransition(fleeing, (timeInState) =>
         {
-            // if(
-            //     &&
-            // ){
-            //     return true;
-            // }
+            if(
+                anaya.ai.action == AnayaAI.Action.Fleeing //&&
+            ){
+                return true;
+            }
             return false;
         });
         
         idle.AddTransition(staying, (timeInState) =>
         {
-            // if(
-            //     &&
-            // ){
-            //     return true;
-            // }
+            if(
+                anaya.ai.action == AnayaAI.Action.Staying //&&
+            ){
+                return true;
+            }
             return false;
         });
         
@@ -61,31 +61,31 @@ public class State_Anaya_Control_AI : BaseState
 
         seeking.AddTransition(idle, (timeInState) =>
         {
-            // if(
-            //     ||
-            // ){
-            //     return true;
-            // }
+            if(
+                anaya.ai.action != AnayaAI.Action.Seeking //||
+            ){
+                return true;
+            }
             return false;
         });
         
         fleeing.AddTransition(idle, (timeInState) =>
         {
-            // if(
-            //     ||
-            // ){
-            //     return true;
-            // }
+            if(
+                anaya.ai.action != AnayaAI.Action.Fleeing //||
+            ){
+                return true;
+            }
             return false;
         });
         
         staying.AddTransition(idle, (timeInState) =>
         {
-            // if(
-            //     ||
-            // ){
-            //     return true;
-            // }
+            if(
+                anaya.ai.action != AnayaAI.Action.Staying //||
+            ){
+                return true;
+            }
             return false;
         });
         
@@ -115,6 +115,6 @@ public class State_Anaya_Control_AI : BaseState
 
     void ToggleAllow(bool toggle)
     {
-        anaya.AllowAI = toggle;
+
     }
 }

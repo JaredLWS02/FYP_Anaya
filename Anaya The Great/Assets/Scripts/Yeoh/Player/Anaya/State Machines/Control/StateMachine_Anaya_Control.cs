@@ -2,16 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Anaya))]
+
 public class StateMachine_Anaya_Control : MonoBehaviour
 {
+    [HideInInspector]
     public Anaya anaya;
+
+    void Awake()
+    {
+        anaya = GetComponent<Anaya>();
+
+        Initialize();
+    }
 
     // STATE MACHINE ================================================================================
 
     StateMachine sm;
     BaseState defaultState;
 
-    void Awake()
+    void Initialize()
     {
         sm = new StateMachine();
         
@@ -26,7 +36,7 @@ public class StateMachine_Anaya_Control : MonoBehaviour
         none.AddTransition(player, (timeInState) =>
         {
             if(
-                anaya.control == Anaya.Control.Player //&&
+                anaya.pilot.type == Pilot.Type.Player //&&
             ){
                 return true;
             }
@@ -36,7 +46,7 @@ public class StateMachine_Anaya_Control : MonoBehaviour
         none.AddTransition(ai, (timeInState) =>
         {
             if(
-                anaya.control == Anaya.Control.AI //&&
+                anaya.pilot.type == Pilot.Type.AI //&&
             ){
                 return true;
             }
@@ -50,7 +60,7 @@ public class StateMachine_Anaya_Control : MonoBehaviour
         player.AddTransition(none, (timeInState) =>
         {
             if(
-                anaya.control != Anaya.Control.Player //||
+                anaya.pilot.type != Pilot.Type.Player //||
             ){
                 return true;
             }
@@ -60,7 +70,7 @@ public class StateMachine_Anaya_Control : MonoBehaviour
         ai.AddTransition(none, (timeInState) =>
         {
             if(
-                anaya.control != Anaya.Control.AI //||
+                anaya.pilot.type != Pilot.Type.AI //||
             ){
                 return true;
             }

@@ -29,6 +29,6 @@ public class State_Anaya_Control_Player : BaseState
 
     void ToggleAllow(bool toggle)
     {
-        anaya.AllowPlayer = toggle;
+
     }
 }

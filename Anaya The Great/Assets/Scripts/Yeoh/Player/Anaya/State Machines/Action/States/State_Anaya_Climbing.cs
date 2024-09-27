@@ -22,7 +22,6 @@ public class State_Anaya_Climbing : BaseState
     {
         anaya.AllowMoveX = false;
         anaya.AllowMoveY = true;
-        anaya.AllowJump = true;
     }
 
     protected override void OnExit()
@@ -32,6 +31,7 @@ public class State_Anaya_Climbing : BaseState
 
     void ToggleAllow(bool toggle)
     {
+        anaya.AllowJump = toggle;
         anaya.AllowDash = toggle;
         anaya.AllowSwitch = toggle;
     }

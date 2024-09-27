@@ -15,7 +15,7 @@ public class AISideMove : MonoBehaviour
 
     public void Move()
     {
-        move.inputX = GetMoveDir();
+        move.dirX = GetMoveDir();
     }
 
     // ============================================================================

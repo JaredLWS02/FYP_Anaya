@@ -284,12 +284,14 @@ GameObject:
   - component: {fileID: 4784505804740597715}
   - component: {fileID: 5752622793352810730}
   - component: {fileID: 4702109154757430697}
+  - component: {fileID: 4919481101541640426}
+  - component: {fileID: 9195991858592972193}
   - component: {fileID: 7819293094575399838}
   - component: {fileID: 7541148995696005942}
-  - component: {fileID: 9195991858592972193}
   - component: {fileID: 9210262053067323854}
   - component: {fileID: 448037758320840154}
   - component: {fileID: 5939281134588140339}
+  - component: {fileID: 7040676535554728422}
   - component: {fileID: 4630440818420533794}
   - component: {fileID: 651222682976775433}
   - component: {fileID: 2674342118891313319}
@@ -394,6 +396,32 @@ MonoBehaviour:
   m_DefaultActionMap: Anaya
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &4919481101541640426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8594453726988538027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c243ce33fa331c3459fce6a85560b2d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+--- !u!114 &9195991858592972193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8594453726988538027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1cc31fac7121e148b6c6ecaa4d7cbcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anaya: {fileID: 7819293094575399838}
 --- !u!114 &7819293094575399838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,6 +434,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33d373d9ffbee45458e7d1792044d85f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pilot: {fileID: 0}
+  ai: {fileID: 0}
   AllowMoveX: 0
   AllowMoveY: 0
   AllowJump: 0
@@ -415,9 +445,6 @@ MonoBehaviour:
   AllowStand: 0
   AllowSwitch: 0
   AllowCommand: 0
-  control: 1
-  AllowPlayer: 0
-  AllowAI: 0
 --- !u!114 &7541148995696005942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,19 +455,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 775142a243883f14eb66a5f418c464b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anaya: {fileID: 7819293094575399838}
---- !u!114 &9195991858592972193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8594453726988538027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1cc31fac7121e148b6c6ecaa4d7cbcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   anaya: {fileID: 7819293094575399838}
@@ -478,7 +492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canMove: 1
-  inputX: 0
+  dirX: 0
   faceR: 1
   reverse: 0
 --- !u!114 &5939281134588140339
@@ -505,6 +519,19 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
+--- !u!114 &7040676535554728422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8594453726988538027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f7e28e97800ab54bbe1a58ee1d343e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action: 1
 --- !u!114 &4630440818420533794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,7 +592,4 @@ MonoBehaviour:
   targetOffset: {x: 0, y: 0.5, z: 0}
   selfOffset: {x: 0, y: 0.5, z: 0}
   UpdatePathInterval: 0.25
-  startingNode: 2
-  nextNodeRange: 1
-  jumpIfAboveHeight: 1.5
-  jumpCutIfBelowHeight: 0.5
+  startingNodeIndex: 2

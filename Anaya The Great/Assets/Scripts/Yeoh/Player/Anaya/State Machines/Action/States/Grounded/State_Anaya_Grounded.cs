@@ -106,8 +106,6 @@ public class State_Anaya_Grounded : BaseState
 
     protected override void OnUpdate(float deltaTime)
     {
-        anaya.AllowMoveX = true;
-        anaya.AllowMoveY = false;
     }
 
     protected override void OnExit()
@@ -117,6 +115,6 @@ public class State_Anaya_Grounded : BaseState
 
     void ToggleAllow(bool toggle)
     {
-        anaya.AllowSwitch = toggle;
+
     }
 }

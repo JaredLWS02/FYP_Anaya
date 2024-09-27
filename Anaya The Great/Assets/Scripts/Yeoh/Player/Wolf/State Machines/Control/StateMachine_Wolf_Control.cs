@@ -2,16 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Wolf))]
+
 public class StateMachine_Wolf_Control : MonoBehaviour
 {
+    [HideInInspector]
     public Wolf wolf;
+    
+    void Awake()
+    {
+        wolf = GetComponent<Wolf>();
+
+        Initialize();
+    }
 
     // STATE MACHINE ================================================================================
 
     StateMachine sm;
     BaseState defaultState;
 
-    void Awake()
+    void Initialize()
     {
         sm = new StateMachine();
         
@@ -23,49 +33,49 @@ public class StateMachine_Wolf_Control : MonoBehaviour
 
         // HUB TRANSITIONS ================================================================================
 
-        none.AddTransition(player, (timeInState) =>
+        none.AddTransition(player, (System.Func<float, bool>)((timeInState) =>
         {
             if(
-                wolf.control == Wolf.Control.Player //&&
+                wolf.pilot.type == Pilot.Type.Player //&&
             ){
                 return true;
             }
             return false;
-        });
+        }));
 
-        none.AddTransition(ai, (timeInState) =>
+        none.AddTransition(ai, (System.Func<float, bool>)((timeInState) =>
         {
             if(
-                wolf.control == Wolf.Control.AI //&&
+                wolf.pilot.type == Pilot.Type.AI //&&
             ){
                 return true;
             }
             return false;
-        });
+        }));
         
         
         
         // RETURN TRANSITIONS ================================================================================
 
-        player.AddTransition(none, (timeInState) =>
+        player.AddTransition(none, (System.Func<float, bool>)((timeInState) =>
         {
             if(
-                wolf.control != Wolf.Control.Player //||
+                wolf.pilot.type != Pilot.Type.Player //||
             ){
                 return true;
             }
             return false;
-        });
+        }));
 
-        ai.AddTransition(none, (timeInState) =>
+        ai.AddTransition(none, (System.Func<float, bool>)((timeInState) =>
         {
             if(
-                wolf.control != Wolf.Control.AI //||
+                wolf.pilot.type != Pilot.Type.AI //||
             ){
                 return true;
             }
             return false;
-        });
+        }));
 
         
 

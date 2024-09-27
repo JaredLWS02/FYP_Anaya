@@ -20,7 +20,8 @@ public class State_Anaya_Commanding : BaseState
 
     protected override void OnUpdate(float deltaTime)
     {
-        anaya.AllowJump = false;
+        anaya.AllowMoveX = false;
+        anaya.AllowMoveY = false;
     }
 
     protected override void OnExit()

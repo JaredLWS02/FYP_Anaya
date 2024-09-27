@@ -5,19 +5,16 @@ using Pathfinding;
 
 [RequireComponent(typeof(Seeker))]
 [RequireComponent(typeof(AISideSeek))]
-[RequireComponent(typeof(Jump2D))]
 
 public class AISidePathseeker : MonoBehaviour
 {
     Seeker seeker;
     AISideSeek aiMove;
-    Jump2D jump;
 
     void Awake()
     {
         seeker = GetComponent<Seeker>();
         aiMove = GetComponent<AISideSeek>();
-        jump = GetComponent<Jump2D>();
     }
 
     // ============================================================================
@@ -58,57 +55,70 @@ public class AISidePathseeker : MonoBehaviour
     {
         if(new_path.error) return;
 
-        List<Vector3> new_nodes = new(new_path.vectorPath);
+        new_path.vectorPath = GetNodesOutsideStoppingRange(new_path.vectorPath);
 
-        // remove all the nodes that are within stopping range
-        foreach(Vector3 node in new_path.vectorPath)
+        if(new_path.vectorPath.Count==0) return;
+
+        path = new_path;
+        currentNodeIndex = Mathf.Min(startingNodeIndex, path.vectorPath.Count-1);
+    }
+
+    List<Vector3> GetNodesOutsideStoppingRange(List<Vector3> path_nodes)
+    {
+        List<Vector3> new_nodes = new();
+
+        // add all the nodes that are outside stopping range
+        foreach(Vector3 node in path_nodes)
         {
             float distance = Vector3.Distance(node, target.position + targetOffset);
 
-            if(distance <= aiMove.stoppingRange)
+            if(distance >= aiMove.stoppingRange)
             {
-                new_nodes.Remove(node);
+                new_nodes.Add(node);
             }
         }
 
-        new_path.vectorPath = new_nodes;
-
-        path = new_path;
-        currentNode = Mathf.Min(startingNode, path.vectorPath.Count-1);
+        return new_nodes;
     }
 
     // Moving ============================================================================
 
     [Header("Move")]
-    public int startingNode=2;
-    public float nextNodeRange=1;
-    int currentNode;
+    public int startingNodeIndex=2;
+    int currentNodeIndex;
+    //public float nextNodeRange=1;
 
     public void Move()
     {
         if(path==null) return;
         if(path.vectorPath.Count==0) return;
 
-        Vector3 targetNode = path.vectorPath[currentNode];
+        Vector3 targetNode = path.vectorPath[currentNodeIndex];
         TryContinue(targetNode);
 
         aiMove.arrival = HasReachedEnd();
         aiMove.targetPos = targetNode;
         aiMove.Move();
 
-        TryJump(targetNode);
+        CheckNodeHeight(targetNode);
     }
 
     void TryContinue(Vector3 targetNode)
     {
         float distance = Vector3.Distance(transform.position + selfOffset, targetNode);
 
+        float nextNodeRange = aiMove.stoppingRange;
+
         if(distance <= nextNodeRange)
         {
             if(HasReachedEnd())
+            {
                 path=null;
+            }
             else
-                currentNode++;
+            {
+                currentNodeIndex++;
+            }
         }
     }
 
@@ -116,42 +126,28 @@ public class AISidePathseeker : MonoBehaviour
     {
         if(path==null) return true;
 
-        return currentNode >= path.vectorPath.Count-1;
+        return currentNodeIndex >= path.vectorPath.Count-1;
     }
 
-    // Jumping ============================================================================
+    // For Jump or Descend ============================================================================
 
-    [Header("Jump")]
-    public float jumpIfAboveHeight=1.5f;
-    public float jumpCutIfBelowHeight=.5f;
-
-    void TryJump(Vector3 targetNode)
+    void CheckNodeHeight(Vector3 targetNode)
     {
-        float y_dist = GetYDistance(targetNode);
+        Vector3 selfPos = transform.position + selfOffset;
 
-        if(IsTargetAbove(targetNode))
+        float node_height = targetNode.y - selfPos.y;
+
+        float nextNodeRange = aiMove.stoppingRange;
+
+        // node is above
+        if(node_height > nextNodeRange)
         {
-            if(y_dist >= jumpIfAboveHeight)
-            {
-                jump.JumpBuffer();
-            }
+            EventManager.Current.OnJump(gameObject, 1);
         }
-        else
+        // node is below
+        else if(node_height < -nextNodeRange) 
         {
-            if(y_dist >= jumpCutIfBelowHeight)
-            {
-                jump.JumpCut();
-            }
+            EventManager.Current.OnJump(gameObject, 0); // jumpcut
         }
-    }
-
-    float GetYDistance(Vector3 target)
-    {
-        return Mathf.Abs(transform.position.y - target.y);
-    }
-
-    bool IsTargetAbove(Vector3 target)
-    {
-        return target.y >= transform.position.y;
     }
 }

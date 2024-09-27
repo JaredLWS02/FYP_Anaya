@@ -82,7 +82,7 @@ public class Jump2D : MonoBehaviour
 
     // Jump Buffer ============================================================================
 
-    [Header("Jump Buffer")]
+    [Header("Assist")]
     public float jumpBufferTime=.2f;
     float jumpBufferLeft;
 
@@ -103,7 +103,6 @@ public class Jump2D : MonoBehaviour
 
     // Coyote Time ============================================================================
 
-    [Header("Coyote Time")]
     public float coyoteTime=.2f;
     float coyoteTimeLeft;
 
@@ -124,7 +123,6 @@ public class Jump2D : MonoBehaviour
 
     // Jump Cut ============================================================================
 
-    [Header("Jump Cut")]
     public float jumpCutMult=.5f;
 
     public void JumpCut()

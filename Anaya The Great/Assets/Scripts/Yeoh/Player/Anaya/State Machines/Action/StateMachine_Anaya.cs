@@ -2,16 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Anaya))]
+
 public class StateMachine_Anaya : MonoBehaviour
 {
+    [HideInInspector]
     public Anaya anaya;
+
+    void Awake()
+    {
+        anaya = GetComponent<Anaya>();
+
+        Initialize();
+    }
 
     // STATE MACHINE ================================================================================
 
     StateMachine sm;
     BaseState defaultState;
 
-    void Awake()
+    void Initialize()
     {
         sm = new StateMachine();
         

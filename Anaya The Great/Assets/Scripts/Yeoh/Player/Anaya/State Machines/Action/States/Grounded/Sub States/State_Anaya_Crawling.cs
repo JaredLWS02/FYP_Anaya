@@ -20,7 +20,8 @@ public class State_Anaya_Crawling : BaseState
 
     protected override void OnUpdate(float deltaTime)
     {
-        anaya.AllowJump = false;
+        anaya.AllowMoveX = true;
+        anaya.AllowMoveY = true;
     }
 
     protected override void OnExit()
@@ -31,5 +32,6 @@ public class State_Anaya_Crawling : BaseState
     void ToggleAllow(bool toggle)
     {
         anaya.AllowStand = toggle;
+        anaya.AllowSwitch = toggle;
     }
 }

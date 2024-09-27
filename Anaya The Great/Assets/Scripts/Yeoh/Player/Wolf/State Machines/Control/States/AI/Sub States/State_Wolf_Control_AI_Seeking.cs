@@ -20,6 +20,7 @@ public class State_Wolf_Control_AI_Seeking : BaseState
 
     protected override void OnUpdate(float deltaTime)
     {
+        wolf.ai.SeekMove();
     }
 
     protected override void OnExit()
