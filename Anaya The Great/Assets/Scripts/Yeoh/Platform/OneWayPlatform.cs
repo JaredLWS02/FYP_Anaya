@@ -68,7 +68,7 @@ public class OneWayPlatform : MonoBehaviour
 
     void OnMoveY(GameObject mover, float input_y)
     {
-        if(input_y>=0) return;
+        if(input_y > -0.75f) return;
 
         foreach(var passenger in passengers)
         {

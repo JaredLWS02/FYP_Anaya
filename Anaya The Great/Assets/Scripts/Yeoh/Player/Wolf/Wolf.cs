@@ -31,15 +31,26 @@ public class Wolf : MonoBehaviour
         EventManager.Current.MoveXEvent += MoveX;
         EventManager.Current.MoveYEvent += MoveY;
         EventManager.Current.JumpEvent += Jump;
+        EventManager.Current.PlayerSwitchEvent += PlayerSwitch;
+
+        PlayerManager.Current.Register(gameObject);
     }
     void OnDisable()
     {
         EventManager.Current.MoveXEvent -= MoveX;
         EventManager.Current.MoveYEvent -= MoveY;
         EventManager.Current.JumpEvent -= Jump;
+        EventManager.Current.PlayerSwitchEvent -= PlayerSwitch;
+
+        PlayerManager.Current.Unregister(gameObject);
     }
 
     // ============================================================================
+
+    void Start()
+    {
+        EventManager.Current.OnSpawn(gameObject);
+    }
 
     void Update()
     {
@@ -105,5 +116,20 @@ public class Wolf : MonoBehaviour
     {
         return jump.IsGrounded();
     }
+    
+    // ============================================================================
 
+    void PlayerSwitch(GameObject from, GameObject to)
+    {
+        if(!AllowSwitch) return;
+        
+        if(gameObject==from)
+        {
+            pilot.type = Pilot.Type.AI;
+        }
+        else if(gameObject==to)
+        {
+            pilot.type = Pilot.Type.Player;
+        }
+    }
 }

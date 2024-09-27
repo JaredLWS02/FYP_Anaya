@@ -46,4 +46,9 @@ public class Pilot : MonoBehaviour
 
         EventManager.Current.OnJump(gameObject, input);
     }
+
+    void OnSwitch()
+    {
+        PlayerManager.Current.TrySwitch(gameObject);
+    }
 }

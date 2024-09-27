@@ -46,6 +46,7 @@ public class EventManager : MonoBehaviour
     public event Action<GameObject, float> MoveXEvent;
     public event Action<GameObject, float> MoveYEvent;
     public event Action<GameObject, float> JumpEvent;
+    public event Action<GameObject, GameObject> PlayerSwitchEvent;
 
     public void OnMoveX(GameObject mover, float input_x)
     {
@@ -58,6 +59,10 @@ public class EventManager : MonoBehaviour
     public void OnJump(GameObject jumper, float input)
     {
         JumpEvent?.Invoke(jumper, input);
+    }   
+    public void OnPlayerSwitch(GameObject from, GameObject to)
+    {
+        PlayerSwitchEvent?.Invoke(from, to);
     }   
     
     // Combat ==================================================================================================================

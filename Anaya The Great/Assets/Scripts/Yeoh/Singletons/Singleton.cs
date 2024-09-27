@@ -18,7 +18,7 @@ public class Singleton : MonoBehaviour
         Invoke(nameof(UnlockFPS), .1f);
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // ============================================================================
 
     void UnlockFPS()
     {
@@ -26,14 +26,15 @@ public class Singleton : MonoBehaviour
         QualitySettings.vSyncCount = 0;
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // ============================================================================
 
     public bool IsWindows()
     {
-        return Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor;
+        return Application.platform == RuntimePlatform.WindowsPlayer ||
+            Application.platform == RuntimePlatform.WindowsEditor;
     }
     
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // ============================================================================
 
-    
+    public int players=1;
 }

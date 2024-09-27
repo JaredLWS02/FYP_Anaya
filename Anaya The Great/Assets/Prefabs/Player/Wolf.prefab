@@ -263,7 +263,7 @@ MonoBehaviour:
   ai: {fileID: 0}
   AllowMoveX: 1
   AllowJump: 1
-  AllowSwitch: 0
+  AllowSwitch: 1
 --- !u!114 &663988177092084772
 MonoBehaviour:
   m_ObjectHideFlags: 0
