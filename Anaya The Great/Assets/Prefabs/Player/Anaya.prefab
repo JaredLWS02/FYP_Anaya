@@ -518,7 +518,7 @@ MonoBehaviour:
   boxCenterOffset: {x: 0, y: 0}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 513
 --- !u!114 &7040676535554728422
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -218,7 +218,7 @@ MonoBehaviour:
     m_ActionName: Wolf/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: ab82e1f2-e2dd-4f1b-87f6-f0620c2445ce
+  m_DefaultActionMap: Wolf
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &6337178204564506736
@@ -246,7 +246,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24039dc1cfa2004b99b60901129e82b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pilot: {fileID: 0}
   wolf: {fileID: 1103842026340995497}
 --- !u!114 &1103842026340995497
 MonoBehaviour:
@@ -325,7 +324,7 @@ MonoBehaviour:
   boxCenterOffset: {x: 0, y: 0}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 513
 --- !u!114 &8254885034737184713
 MonoBehaviour:
   m_ObjectHideFlags: 0

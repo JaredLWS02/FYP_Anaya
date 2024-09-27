@@ -145,9 +145,10 @@ public class AISidePathseeker : MonoBehaviour
             EventManager.Current.OnJump(gameObject, 1);
         }
         // node is below
-        else if(node_height < -nextNodeRange) 
+        else if(node_height < -nextNodeRange)
         {
             EventManager.Current.OnJump(gameObject, 0); // jumpcut
+            EventManager.Current.OnMoveY(gameObject, -1); // press down
         }
     }
 }
