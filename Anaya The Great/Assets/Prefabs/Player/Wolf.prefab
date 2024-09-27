@@ -218,7 +218,7 @@ MonoBehaviour:
     m_ActionName: Wolf/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Wolf
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &6337178204564506736
@@ -262,6 +262,7 @@ MonoBehaviour:
   pilot: {fileID: 0}
   ai: {fileID: 0}
   AllowMoveX: 1
+  AllowMoveY: 1
   AllowJump: 1
   AllowSwitch: 1
 --- !u!114 &663988177092084772

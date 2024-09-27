@@ -31,7 +31,7 @@ public class Anaya : MonoBehaviour
         EventManager.Current.MoveXEvent += MoveX;
         EventManager.Current.MoveYEvent += MoveY;
         EventManager.Current.JumpEvent += Jump;
-        EventManager.Current.PlayerSwitchEvent += PlayerSwitch;
+        EventManager.Current.TrySwitchEvent += TrySwitch;
 
         PlayerManager.Current.Register(gameObject);
     }
@@ -40,7 +40,7 @@ public class Anaya : MonoBehaviour
         EventManager.Current.MoveXEvent -= MoveX;
         EventManager.Current.MoveYEvent -= MoveY;
         EventManager.Current.JumpEvent -= Jump;
-        EventManager.Current.PlayerSwitchEvent -= PlayerSwitch;
+        EventManager.Current.TrySwitchEvent -= TrySwitch;
 
         PlayerManager.Current.Unregister(gameObject);
     }
@@ -125,18 +125,12 @@ public class Anaya : MonoBehaviour
 
     // ============================================================================
 
-    void PlayerSwitch(GameObject from, GameObject to)
+    void TrySwitch(GameObject switcher)
     {
+        if(switcher!=gameObject) return;
         if(!AllowSwitch) return;
-
-        if(gameObject==from)
-        {
-            pilot.type = Pilot.Type.AI;
-        }
-        else if(gameObject==to)
-        {
-            pilot.type = Pilot.Type.Player;
-        }
+        
+        PlayerManager.Current.Switch(gameObject);
     }
 
     // ============================================================================

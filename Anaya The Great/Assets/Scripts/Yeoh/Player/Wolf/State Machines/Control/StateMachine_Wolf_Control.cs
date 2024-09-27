@@ -33,7 +33,7 @@ public class StateMachine_Wolf_Control : MonoBehaviour
 
         // HUB TRANSITIONS ================================================================================
 
-        none.AddTransition(player, (System.Func<float, bool>)((timeInState) =>
+        none.AddTransition(player, (timeInState) =>
         {
             if(
                 wolf.pilot.type == Pilot.Type.Player //&&
@@ -41,9 +41,9 @@ public class StateMachine_Wolf_Control : MonoBehaviour
                 return true;
             }
             return false;
-        }));
+        });
 
-        none.AddTransition(ai, (System.Func<float, bool>)((timeInState) =>
+        none.AddTransition(ai, (timeInState) =>
         {
             if(
                 wolf.pilot.type == Pilot.Type.AI //&&
@@ -51,13 +51,13 @@ public class StateMachine_Wolf_Control : MonoBehaviour
                 return true;
             }
             return false;
-        }));
+        });
         
         
         
         // RETURN TRANSITIONS ================================================================================
 
-        player.AddTransition(none, (System.Func<float, bool>)((timeInState) =>
+        player.AddTransition(none, (timeInState) =>
         {
             if(
                 wolf.pilot.type != Pilot.Type.Player //||
@@ -65,9 +65,9 @@ public class StateMachine_Wolf_Control : MonoBehaviour
                 return true;
             }
             return false;
-        }));
+        });
 
-        ai.AddTransition(none, (System.Func<float, bool>)((timeInState) =>
+        ai.AddTransition(none, (timeInState) =>
         {
             if(
                 wolf.pilot.type != Pilot.Type.AI //||
@@ -75,7 +75,7 @@ public class StateMachine_Wolf_Control : MonoBehaviour
                 return true;
             }
             return false;
-        }));
+        });
 
         
 

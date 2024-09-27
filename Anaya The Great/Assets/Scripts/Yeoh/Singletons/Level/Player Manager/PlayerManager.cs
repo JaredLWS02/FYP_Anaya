@@ -46,10 +46,16 @@ public class PlayerManager : MonoBehaviour
 
     // ============================================================================
     
-    public void TrySwitch(GameObject switcher)
+    bool canSwitch=true;
+    public float switchCooldown=.5f;
+
+    public void Switch(GameObject switcher)
     {
-        if(Singleton.Current.players!=1) return;
+        //if(MultiplayerManager.Current.players!=1) return;
         if(characters.Count<=1) return;
+
+        if(!canSwitch) return;
+        StartCoroutine(SwitchCoolingDown());
 
         int i = GetIndex(switcher);
 
@@ -60,8 +66,15 @@ public class PlayerManager : MonoBehaviour
             i=0;
         }
 
-        EventManager.Current.OnPlayerSwitch(switcher, characters[i]);
+        EventManager.Current.OnSwitch(switcher, characters[i]);
 
         Debug.Log($"Switched from {switcher.name} to {characters[i].name}");
+    }
+
+    IEnumerator SwitchCoolingDown()
+    {
+        canSwitch=false;
+        yield return new WaitForSeconds(switchCooldown);
+        canSwitch=true;
     }
 }

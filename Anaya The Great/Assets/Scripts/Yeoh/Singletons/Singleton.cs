@@ -35,6 +35,4 @@ public class Singleton : MonoBehaviour
     }
     
     // ============================================================================
-
-    public int players=1;
 }

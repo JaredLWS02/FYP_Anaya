@@ -46,7 +46,8 @@ public class EventManager : MonoBehaviour
     public event Action<GameObject, float> MoveXEvent;
     public event Action<GameObject, float> MoveYEvent;
     public event Action<GameObject, float> JumpEvent;
-    public event Action<GameObject, GameObject> PlayerSwitchEvent;
+    public event Action<GameObject> TrySwitchEvent;
+    public event Action<GameObject, GameObject> SwitchEvent;
 
     public void OnMoveX(GameObject mover, float input_x)
     {
@@ -60,9 +61,13 @@ public class EventManager : MonoBehaviour
     {
         JumpEvent?.Invoke(jumper, input);
     }   
-    public void OnPlayerSwitch(GameObject from, GameObject to)
+    public void OnTrySwitch(GameObject switcher)
     {
-        PlayerSwitchEvent?.Invoke(from, to);
+        TrySwitchEvent?.Invoke(switcher);
+    }   
+    public void OnSwitch(GameObject from, GameObject to)
+    {
+        SwitchEvent?.Invoke(from, to);
     }   
     
     // Combat ==================================================================================================================

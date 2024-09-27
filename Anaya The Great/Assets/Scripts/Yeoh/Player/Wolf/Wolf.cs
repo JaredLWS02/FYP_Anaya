@@ -31,7 +31,7 @@ public class Wolf : MonoBehaviour
         EventManager.Current.MoveXEvent += MoveX;
         EventManager.Current.MoveYEvent += MoveY;
         EventManager.Current.JumpEvent += Jump;
-        EventManager.Current.PlayerSwitchEvent += PlayerSwitch;
+        EventManager.Current.TrySwitchEvent += TrySwitch;
 
         PlayerManager.Current.Register(gameObject);
     }
@@ -40,7 +40,7 @@ public class Wolf : MonoBehaviour
         EventManager.Current.MoveXEvent -= MoveX;
         EventManager.Current.MoveYEvent -= MoveY;
         EventManager.Current.JumpEvent -= Jump;
-        EventManager.Current.PlayerSwitchEvent -= PlayerSwitch;
+        EventManager.Current.TrySwitchEvent -= TrySwitch;
 
         PlayerManager.Current.Unregister(gameObject);
     }
@@ -61,6 +61,7 @@ public class Wolf : MonoBehaviour
 
     [Header("Toggles")]
     public bool AllowMoveX;
+    public bool AllowMoveY;
 
     public bool AllowJump;
     public bool AllowSwitch;
@@ -80,7 +81,7 @@ public class Wolf : MonoBehaviour
     {
         if(mover!=gameObject) return;
 
-        //if(!AllowMoveY) return;
+        if(!AllowMoveY) return;
 
         //climb.inputY = input_y;
     }
@@ -119,17 +120,13 @@ public class Wolf : MonoBehaviour
     
     // ============================================================================
 
-    void PlayerSwitch(GameObject from, GameObject to)
+    void TrySwitch(GameObject switcher)
     {
+        if(switcher!=gameObject) return;
         if(!AllowSwitch) return;
         
-        if(gameObject==from)
-        {
-            pilot.type = Pilot.Type.AI;
-        }
-        else if(gameObject==to)
-        {
-            pilot.type = Pilot.Type.Player;
-        }
+        PlayerManager.Current.Switch(gameObject);
     }
+
+    // ============================================================================
 }

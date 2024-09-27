@@ -168,7 +168,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1901073490072742894, guid: 8322b2130d4b2834aa046a92166a3b4b, type: 3}
       propertyPath: m_Name
-      value: Actor Manager
+      value: Player Manager
       objectReference: {fileID: 0}
     - target: {fileID: 5450379472593888484, guid: 8322b2130d4b2834aa046a92166a3b4b, type: 3}
       propertyPath: m_LocalPosition.x

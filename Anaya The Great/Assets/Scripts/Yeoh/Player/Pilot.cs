@@ -7,11 +7,15 @@ using UnityEngine.InputSystem;
 
 public class Pilot : MonoBehaviour
 {
-    PlayerInput input;
+    // Event Manager ============================================================================
 
-    void Awake()
+    void OnEnable()
     {
-        input = GetComponent<PlayerInput>();
+        EventManager.Current.SwitchEvent += SwitchPilot;
+    }
+    void OnDisable()
+    {
+        EventManager.Current.SwitchEvent -= SwitchPilot;
     }
 
     // ============================================================================
@@ -27,13 +31,10 @@ public class Pilot : MonoBehaviour
 
     // Input System ============================================================================
 
-    void Update()
-    {
-        input.enabled = type==Type.Player;
-    }
-
     void OnMove(InputValue value)
     {
+        if(type!=Type.Player) return;
+
         Vector2 input = value.Get<Vector2>();
 
         EventManager.Current.OnMoveX(gameObject, input.x);
@@ -42,6 +43,8 @@ public class Pilot : MonoBehaviour
 
     void OnJump(InputValue value)
     {
+        if(type!=Type.Player) return;
+
         float input = value.Get<float>();
 
         EventManager.Current.OnJump(gameObject, input);
@@ -49,6 +52,22 @@ public class Pilot : MonoBehaviour
 
     void OnSwitch()
     {
-        PlayerManager.Current.TrySwitch(gameObject);
+        if(type!=Type.Player) return;
+
+        EventManager.Current.OnTrySwitch(gameObject);
+    }
+
+    // ============================================================================
+
+    void SwitchPilot(GameObject from, GameObject to)
+    {
+        if(gameObject==from)
+        {
+            type = Type.AI;
+        }
+        else if(gameObject==to)
+        {
+            type = Type.Player;
+        }
     }
 }

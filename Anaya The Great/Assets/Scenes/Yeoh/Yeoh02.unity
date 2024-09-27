@@ -1252,10 +1252,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 4666619861597217854}
-    - target: {fileID: 2353882106979173347, guid: af4513aff309eb3459f46f953213b608, type: 3}
-      propertyPath: m_DefaultActionMap
-      value: 83a93733-68da-4b3e-8be9-837180ce75e5
-      objectReference: {fileID: 0}
     - target: {fileID: 4566853520928753028, guid: af4513aff309eb3459f46f953213b608, type: 3}
       propertyPath: m_Name
       value: Wolf
@@ -1545,10 +1541,6 @@ PrefabInstance:
     - target: {fileID: 3139016363553785320, guid: 6b8e6f74f7fc9ed46806f0ab381699b5, type: 3}
       propertyPath: m_Name
       value: Level
-      objectReference: {fileID: 0}
-    - target: {fileID: 8833313069622271763, guid: 6b8e6f74f7fc9ed46806f0ab381699b5, type: 3}
-      propertyPath: m_Name
-      value: Player Manager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
