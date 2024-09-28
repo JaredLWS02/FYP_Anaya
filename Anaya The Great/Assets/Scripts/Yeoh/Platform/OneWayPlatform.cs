@@ -22,30 +22,31 @@ public class OneWayPlatform : MonoBehaviour
         EventManager.Current.MoveYEvent -= OnMoveY;
     }
 
-    // ============================================================================
+    // Events ============================================================================
 
-    class Passenger
+    void OnMoveY(GameObject mover, float input_y)
     {
-        public GameObject gameObject;
-        public Rigidbody2D rb;
-        public Collider2D coll;
-        public Coroutine timer;
+        if(input_y > -0.7f) return;
+
+        foreach(var passenger in passengers)
+        {
+            if(mover == passenger.gameObject)
+            {
+                if(passenger.timer!=null) StopCoroutine(passenger.timer);
+                passenger.timer = StartCoroutine(IgnoringColl(passenger.coll));
+            }
+        }
     }
 
-    List<Passenger> passengers = new();
-
-    // ============================================================================
+    // Collision ============================================================================
 
     void OnCollisionEnter2D(Collision2D other)
     {
         Rigidbody2D rb = other.rigidbody;
         if(!rb) return;
 
-        Passenger new_passenger = new();
-        new_passenger.gameObject = rb.gameObject;
-        new_passenger.rb = rb;
-        new_passenger.coll = other.collider;
-
+        Passenger new_passenger = NewPassenger(other);
+    
         passengers.Add(new_passenger);
     }
 
@@ -66,19 +67,30 @@ public class OneWayPlatform : MonoBehaviour
 
     // ============================================================================
 
-    void OnMoveY(GameObject mover, float input_y)
+    class Passenger
     {
-        if(input_y > -0.7f) return;
-
-        foreach(var passenger in passengers)
-        {
-            if(mover == passenger.gameObject)
-            {
-                if(passenger.timer!=null) StopCoroutine(passenger.timer);
-                passenger.timer = StartCoroutine(IgnoringColl(passenger.coll));
-            }
-        }
+        public GameObject gameObject;
+        public Rigidbody2D rb;
+        public Collider2D coll;
+        public Coroutine timer;
     }
+
+    List<Passenger> passengers = new();
+
+    Passenger NewPassenger(Collision2D other)
+    {
+        Rigidbody2D rb = other.rigidbody;
+
+        Passenger new_passenger = new();
+
+        new_passenger.gameObject = rb.gameObject;
+        new_passenger.rb = rb;
+        new_passenger.coll = other.collider;
+
+        return new_passenger;
+    }
+
+    // ============================================================================
 
     IEnumerator IgnoringColl(Collider2D targetColl)
     {

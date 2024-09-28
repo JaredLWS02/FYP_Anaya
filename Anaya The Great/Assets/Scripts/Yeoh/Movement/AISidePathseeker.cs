@@ -134,21 +134,20 @@ public class AISidePathseeker : MonoBehaviour
     void CheckNodeHeight(Vector3 targetNode)
     {
         Vector3 selfPos = transform.position + selfOffset;
-
         float node_height = targetNode.y - selfPos.y;
-
         float nextNodeRange = aiMove.stoppingRange;
 
         // node is above
         if(node_height > nextNodeRange)
         {
-            EventManager.Current.OnJump(gameObject, 1);
+            EventManager.Current.OnTryJump(gameObject, 1); // jump duh
+            EventManager.Current.OnTryMoveY(gameObject, 1); // press up
         }
         // node is below
         else if(node_height < -nextNodeRange)
         {
-            EventManager.Current.OnJump(gameObject, 0); // jumpcut
-            EventManager.Current.OnMoveY(gameObject, -1); // press down
+            EventManager.Current.OnTryJump(gameObject, 0); // jumpcut
+            EventManager.Current.OnTryMoveY(gameObject, -1); // press down
         }
     }
 }

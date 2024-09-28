@@ -49,7 +49,7 @@ public class PlayerManager : MonoBehaviour
     bool canSwitch=true;
     public float switchCooldown=.5f;
 
-    public void Switch(GameObject switcher)
+    public void TrySwitch(GameObject switcher)
     {
         //if(MultiplayerManager.Current.players!=1) return;
         if(characters.Count<=1) return;

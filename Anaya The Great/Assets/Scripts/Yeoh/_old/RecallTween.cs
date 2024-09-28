@@ -16,7 +16,7 @@ public class RecallTween : MonoBehaviour
         movement = GetComponent<MnKMovement>();
     }
 
-    //---------------------------------------------------------------------------
+    // ============================================================================
 
     bool canRecall = true;
 
@@ -26,8 +26,9 @@ public class RecallTween : MonoBehaviour
 
     Tween recallTween;
 
-    // new input system event
-    void OnRecall()
+    // Input System ============================================================================
+
+    void OnInputRecall()
     {
         // ignore if not grounded 
         if(!movement.IsGrounded()) return;
@@ -46,6 +47,8 @@ public class RecallTween : MonoBehaviour
             .SetEase(Ease.InOutSine)
             .SetSpeedBased(true);
     }
+
+    // ============================================================================
 
     IEnumerator RecallCooling(float t)
     {

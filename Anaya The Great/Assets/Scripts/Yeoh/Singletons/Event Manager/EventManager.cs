@@ -41,14 +41,37 @@ public class EventManager : MonoBehaviour
         SpawnEvent?.Invoke(spawned);
     }
 
-    // Actions ==================================================================================================================
+    // Try Actions ==================================================================================================================
+
+    public event Action<GameObject, float> TryMoveXEvent;
+    public event Action<GameObject, float> TryMoveYEvent;
+    public event Action<GameObject, float> TryJumpEvent;
+    public event Action<GameObject> TrySwitchEvent;
+
+    public void OnTryMoveX(GameObject mover, float input_x)
+    {
+        TryMoveXEvent?.Invoke(mover, input_x);
+    }   
+    public void OnTryMoveY(GameObject mover, float input_y)
+    {
+        TryMoveYEvent?.Invoke(mover, input_y);
+    }   
+    public void OnTryJump(GameObject jumper, float input)
+    {
+        TryJumpEvent?.Invoke(jumper, input);
+    }   
+    public void OnTrySwitch(GameObject switcher)
+    {
+        TrySwitchEvent?.Invoke(switcher);
+    }  
+
+    // Actual Actions ==================================================================================================================
 
     public event Action<GameObject, float> MoveXEvent;
     public event Action<GameObject, float> MoveYEvent;
     public event Action<GameObject, float> JumpEvent;
-    public event Action<GameObject> TrySwitchEvent;
     public event Action<GameObject, GameObject> SwitchEvent;
-
+    
     public void OnMoveX(GameObject mover, float input_x)
     {
         MoveXEvent?.Invoke(mover, input_x);
@@ -56,15 +79,11 @@ public class EventManager : MonoBehaviour
     public void OnMoveY(GameObject mover, float input_y)
     {
         MoveYEvent?.Invoke(mover, input_y);
-    }   
+    }
     public void OnJump(GameObject jumper, float input)
     {
         JumpEvent?.Invoke(jumper, input);
-    }   
-    public void OnTrySwitch(GameObject switcher)
-    {
-        TrySwitchEvent?.Invoke(switcher);
-    }   
+    }
     public void OnSwitch(GameObject from, GameObject to)
     {
         SwitchEvent?.Invoke(from, to);

@@ -32,7 +32,7 @@ public class State_Anaya_Climbing : BaseState
     void ToggleAllow(bool toggle)
     {
         anaya.AllowJump = toggle;
-        anaya.AllowDash = toggle;
         anaya.AllowSwitch = toggle;
+        anaya.AllowDash = toggle;
     }
 }

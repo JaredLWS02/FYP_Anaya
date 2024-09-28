@@ -197,11 +197,15 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7f17d2f3-1265-4f98-a426-7df981aca2a6
+    m_ActionName: Anaya/Recall[/Keyboard/x]
+  - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RecallTween, Assembly-CSharp
-        m_MethodName: Recall
-        m_Mode: 1
+      - m_Target: {fileID: 6337178204564506736}
+        m_TargetAssemblyTypeName: Pilot, Assembly-CSharp
+        m_MethodName: OnInputMove
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -210,12 +214,40 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 7f17d2f3-1265-4f98-a426-7df981aca2a6
-    m_ActionName: Anaya/Recall[/Keyboard/x]
+    m_ActionId: 4d059ae5-69e1-4105-adee-15db5239c2fb
+    m_ActionName: Player/Input Move[/Keyboard/w,/Keyboard/a,/Keyboard/s,/Keyboard/d,/Keyboard/upArrow,/Keyboard/leftArrow,/Keyboard/downArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: cc57b99c-f48a-4165-b032-4ad727eecb13
-    m_ActionName: Wolf/New action
+      m_Calls:
+      - m_Target: {fileID: 6337178204564506736}
+        m_TargetAssemblyTypeName: Pilot, Assembly-CSharp
+        m_MethodName: OnInputJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ba5918cd-f018-410a-b3fe-91b4f901fb95
+    m_ActionName: Player/Input Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6337178204564506736}
+        m_TargetAssemblyTypeName: Pilot, Assembly-CSharp
+        m_MethodName: OnInputSwitch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 941875e0-8d9b-4a4a-a799-3239c523c5ee
+    m_ActionName: Player/Input Switch[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

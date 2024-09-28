@@ -7,6 +7,15 @@ using UnityEngine.InputSystem;
 
 public class Pilot : MonoBehaviour
 {
+    public enum Type
+    {
+        None,
+        Player,
+        AI,
+    }
+
+    public Type type = Type.Player;  
+
     // Event Manager ============================================================================
 
     void OnEnable()
@@ -18,46 +27,7 @@ public class Pilot : MonoBehaviour
         EventManager.Current.SwitchEvent -= SwitchPilot;
     }
 
-    // ============================================================================
-
-    public enum Type
-    {
-        None,
-        Player,
-        AI,
-    }
-
-    public Type type = Type.Player;    
-
-    // Input System ============================================================================
-
-    void OnMove(InputValue value)
-    {
-        if(type!=Type.Player) return;
-
-        Vector2 input = value.Get<Vector2>();
-
-        EventManager.Current.OnMoveX(gameObject, input.x);
-        EventManager.Current.OnMoveY(gameObject, input.y);
-    }
-
-    void OnJump(InputValue value)
-    {
-        if(type!=Type.Player) return;
-
-        float input = value.Get<float>();
-
-        EventManager.Current.OnJump(gameObject, input);
-    }
-
-    void OnSwitch()
-    {
-        if(type!=Type.Player) return;
-
-        EventManager.Current.OnTrySwitch(gameObject);
-    }
-
-    // ============================================================================
+    // Events ============================================================================
 
     void SwitchPilot(GameObject from, GameObject to)
     {
@@ -70,4 +40,49 @@ public class Pilot : MonoBehaviour
             type = Type.Player;
         }
     }
+
+    //  ============================================================================
+
+    void Update()
+    {
+        UpdateMoveInput();
+    }
+
+    // Input System ============================================================================
+
+    Vector2 moveInput;
+
+    void OnInputMove(InputValue value)
+    {
+        if(type!=Type.Player) return;
+
+        moveInput = value.Get<Vector2>();
+    }
+
+    void UpdateMoveInput()
+    {
+        if(type!=Type.Player) moveInput=Vector2.zero;
+
+        if(moveInput==Vector2.zero) return;
+
+        EventManager.Current.OnTryMoveX(gameObject, moveInput.x);
+        EventManager.Current.OnTryMoveY(gameObject, moveInput.y);
+    }
+
+    void OnInputJump(InputValue value)
+    {
+        if(type!=Type.Player) return;
+
+        float input = value.Get<float>();
+
+        EventManager.Current.OnTryJump(gameObject, input);
+    }
+
+    void OnInputSwitch()
+    {
+        if(type!=Type.Player) return;
+
+        EventManager.Current.OnTrySwitch(gameObject);
+    }
+
 }

@@ -13,20 +13,47 @@ public class SideMove : MonoBehaviour
         vehicle = GetComponent<ForceVehicle2D>();
     }
 
-    void FixedUpdate()
+    // Event Manager ============================================================================
+
+    void OnEnable()
     {
-        Move();
+        EventManager.Current.MoveXEvent += OnMoveX;
+    }
+    void OnDisable()
+    {
+        EventManager.Current.MoveXEvent -= OnMoveX;
+    }    
+
+    // Events ============================================================================
+
+    public bool canMove=true;
+
+    void OnMoveX(GameObject mover, float input_x)
+    {
+        if(mover!=gameObject) return;
+        if(!canMove) return;
+
+        dirX = input_x;
+
+        isMoving=true;
     }
 
     // ============================================================================
 
-    public bool canMove=true;
+    bool isMoving;
     public float dirX;
+
+    void FixedUpdate()
+    {
+        if(!isMoving) dirX=0;
+
+        Move();
+
+        isMoving=false;
+    }
 
     void Move()
     {
-        if(!canMove) dirX=0;
-
         dirX = vehicle.Round(dirX, 1);
         dirX = Mathf.Clamp(dirX, -1, 1);
 

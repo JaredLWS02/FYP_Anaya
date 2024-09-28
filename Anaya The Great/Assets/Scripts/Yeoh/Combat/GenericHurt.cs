@@ -11,6 +11,8 @@ public class GenericHurt : MonoBehaviour
         hurt=GetComponent<Hurt2D>();
     }
 
+    // Event Manager ============================================================================
+
     void OnEnable()
     {
         EventManager.Current.HitEvent += OnHit;
@@ -20,6 +22,8 @@ public class GenericHurt : MonoBehaviour
         EventManager.Current.HitEvent -= OnHit;
     }
 
+    // Events ============================================================================
+    
     public void OnHit(GameObject attacker, GameObject victim, HurtInfo hurtInfo)
     {
         if(victim!=gameObject) return;

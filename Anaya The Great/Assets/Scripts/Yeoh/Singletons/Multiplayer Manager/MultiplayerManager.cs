@@ -46,6 +46,8 @@ public class MultiplayerManager : MonoBehaviour
         }
     }
 
+    // ============================================================================
+
     bool IsDeviceIncluded(InputDevice device)
     {
         return device is Keyboard || device is Gamepad || device is Joystick;

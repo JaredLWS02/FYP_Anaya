@@ -31,7 +31,7 @@ public class State_Anaya_Crawling : BaseState
 
     void ToggleAllow(bool toggle)
     {
-        anaya.AllowStand = toggle;
         anaya.AllowSwitch = toggle;
+        anaya.AllowStand = toggle;
     }
 }

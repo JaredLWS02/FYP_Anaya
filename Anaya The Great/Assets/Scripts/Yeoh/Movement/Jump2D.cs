@@ -13,6 +13,35 @@ public class Jump2D : MonoBehaviour
         rb=GetComponent<Rigidbody2D>();
     }
 
+    // Event Manager ============================================================================
+
+    void OnEnable()
+    {
+        EventManager.Current.JumpEvent += OnJump;
+    }
+    void OnDisable()
+    {
+        EventManager.Current.JumpEvent -= OnJump;
+    }
+
+    // Events ============================================================================
+
+    void OnJump(GameObject jumper, float input)
+    {
+        if(jumper!=gameObject) return;
+
+        if(input>0) //press
+        {
+            JumpBuffer();
+        }
+        else //release
+        {
+            JumpCut();
+        }
+    }
+    
+    // ============================================================================
+
     void Update()
     {
         UpdateExtraJumps();
@@ -20,9 +49,9 @@ public class Jump2D : MonoBehaviour
         UpdateCoyoteTime();
         
         TryJump();
-    }
+    }    
 
-    // Jump ============================================================================
+    // ============================================================================
     
     public bool canJump=true;
     public float jumpForce=8;

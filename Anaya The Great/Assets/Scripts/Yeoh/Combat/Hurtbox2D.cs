@@ -37,6 +37,8 @@ public class Hurtbox2D : MonoBehaviour
         ToggleColl(enabledOnAwake);
     }
 
+    // Event Manager ============================================================================
+
     void OnEnable()
     {
         EventManager.Current.HurtEvent += OnHurt;
@@ -45,8 +47,23 @@ public class Hurtbox2D : MonoBehaviour
     {
         EventManager.Current.HurtEvent -= OnHurt;
     }
+
+    // Events ============================================================================
     
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public UnityEvent OnHit;
+
+    void OnHurt(GameObject victim, GameObject attacker, HurtInfo hurtInfo)
+    {
+        if(hurtInfo.hurtSource!=gameObject) return;
+
+        ToggleColl(hasSweepingEdge); // if can swipe through multiple
+
+        OnHit.Invoke();
+
+        if(destroyOnHit) Destroy(gameObject);
+    }
+    
+    // ============================================================================
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -84,21 +101,8 @@ public class Hurtbox2D : MonoBehaviour
 
         return info;
     }
-
-    public UnityEvent OnHit;
-
-    void OnHurt(GameObject victim, GameObject attacker, HurtInfo hurtInfo)
-    {
-        if(hurtInfo.hurtSource!=gameObject) return;
-
-        ToggleColl(hasSweepingEdge); // if can swipe through multiple
-
-        OnHit.Invoke();
-
-        if(destroyOnHit) Destroy(gameObject);
-    }
     
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // ============================================================================
 
     public void BlinkHitbox(float time=.1f)
     {

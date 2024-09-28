@@ -16,7 +16,7 @@ public class AISideSeek : MonoBehaviour
 
     public void Move()
     {
-        EventManager.Current.OnMoveX(gameObject, GetSeekInput());
+        EventManager.Current.OnTryMoveX(gameObject, GetSeekInput());
     }
 
     float GetSeekInput()
