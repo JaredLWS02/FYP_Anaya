@@ -411,10 +411,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e66504453c74d34dbc5c2d924309305, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPos: {x: 0, y: 0, z: 0}
-  arrival: 0
-  stoppingRange: 0.5
-  slowingRangeOffset: 5
+  goal: {fileID: 0}
+  seekPos: {x: 0, y: 0, z: 0}
+  arrival: 1
+  stoppingRange: 1.5
+  slowingRangeOffset: 3.5
 --- !u!114 &307568496759478739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,8 +431,8 @@ MonoBehaviour:
   target: {fileID: 0}
   targetOffset: {x: 0, y: 0.5, z: 0}
   selfOffset: {x: 0, y: 0.5, z: 0}
-  UpdatePathInterval: 0.25
-  startingNodeIndex: 2
+  UpdatePathInterval: 0.5
+  startingNodeIndex: 1
 --- !u!1 &7546483653363257408
 GameObject:
   m_ObjectHideFlags: 0

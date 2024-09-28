@@ -40,6 +40,8 @@ public class AISidePathseeker : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(UpdatePathInterval);
+            
+            if(target)
             TryMakePath(transform.position + selfOffset, target.position + targetOffset);
         }
     }
@@ -55,7 +57,9 @@ public class AISidePathseeker : MonoBehaviour
     {
         if(new_path.error) return;
 
-        new_path.vectorPath = GetNodesOutsideStoppingRange(new_path.vectorPath);
+        // new_path.vectorPath = GetNodesOutsideStoppingRange(new_path.vectorPath);
+        // a better way is to give both the node pos and goal pos to ai seek)
+        // arrival should only compare the distance between the goal pos, not the node pos
 
         if(new_path.vectorPath.Count==0) return;
 
@@ -90,14 +94,16 @@ public class AISidePathseeker : MonoBehaviour
 
     public void Move()
     {
+        if(!target) return;
         if(path==null) return;
         if(path.vectorPath.Count==0) return;
 
         Vector3 targetNode = path.vectorPath[currentNodeIndex];
         TryContinue(targetNode);
 
-        aiMove.arrival = HasReachedEnd();
-        aiMove.targetPos = targetNode;
+        //aiMove.arrival = HasReachedEnd();
+        aiMove.goal = target;
+        aiMove.seekPos = targetNode;
         aiMove.Move();
 
         CheckNodeHeight(targetNode);
@@ -105,20 +111,15 @@ public class AISidePathseeker : MonoBehaviour
 
     void TryContinue(Vector3 targetNode)
     {
+        if(HasReachedEnd()) return;
+
         float distance = Vector3.Distance(transform.position + selfOffset, targetNode);
 
         float nextNodeRange = aiMove.stoppingRange;
 
         if(distance <= nextNodeRange)
         {
-            if(HasReachedEnd())
-            {
-                path=null;
-            }
-            else
-            {
-                currentNodeIndex++;
-            }
+            currentNodeIndex++;
         }
     }
 
@@ -135,7 +136,7 @@ public class AISidePathseeker : MonoBehaviour
     {
         Vector3 selfPos = transform.position + selfOffset;
         float node_height = targetNode.y - selfPos.y;
-        float nextNodeRange = aiMove.stoppingRange;
+        float nextNodeRange = aiMove.stoppingRange*.8f;
 
         // node is above
         if(node_height > nextNodeRange)

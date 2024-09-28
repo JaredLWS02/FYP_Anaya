@@ -5,7 +5,9 @@ using UnityEngine;
 public class AISideSeek : MonoBehaviour
 {
     [HideInInspector]
-    public Vector3 targetPos;
+    public Transform goal;
+    [HideInInspector]
+    public Vector3 seekPos;
 
     [Header("Arrival")]
     public bool arrival=true;
@@ -21,12 +23,14 @@ public class AISideSeek : MonoBehaviour
 
     float GetSeekInput()
     {
+        if(!goal) return 0;
+
         float input_x;
         float max_input=1;
 
         if(arrival)
         {
-            float distance = Mathf.Abs(targetPos.x - transform.position.x);
+            float distance = Mathf.Abs(goal.position.x - transform.position.x);
 
             if(distance <= stoppingRange)
             {
@@ -43,6 +47,6 @@ public class AISideSeek : MonoBehaviour
         }
         else input_x = max_input;
 
-        return targetPos.x >= transform.position.x ? input_x : -input_x;
+        return seekPos.x >= transform.position.x ? input_x : -input_x;
     }
 }
