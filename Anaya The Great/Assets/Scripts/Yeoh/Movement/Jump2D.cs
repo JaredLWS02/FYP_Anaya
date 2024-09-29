@@ -40,7 +40,7 @@ public class Jump2D : MonoBehaviour
         }
     }
     
-    // ============================================================================
+    // Updates ============================================================================
 
     void Update()
     {
@@ -51,7 +51,12 @@ public class Jump2D : MonoBehaviour
         TryJump();
     }    
 
-    // ============================================================================
+    void FixedUpdate()
+    {
+        CheckFallVelocity();
+    }
+
+    // Jump ============================================================================
     
     public bool canJump=true;
     public float jumpForce=8;
@@ -161,6 +166,32 @@ public class Jump2D : MonoBehaviour
         {
             //rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * jumpCutMult);
             rb.AddForce(Vector2.down * rb.velocity.y * (1-jumpCutMult), ForceMode2D.Impulse);
+        }
+    }
+
+    // Falling ============================================================================
+
+    [Header("Falling")]
+    public float minVelocityBeforeFastFall = -.1f;
+    public float fastFallForce=15f;
+    public float maxFallVelocity = -20f;
+
+    void CheckFallVelocity()
+    {
+        // only if going down
+        if(rb.velocity.y>=0) return;
+        
+        if(maxFallVelocity>=0) return;
+
+        if(rb.velocity.y < maxFallVelocity)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, maxFallVelocity);
+            return;
+        }
+        
+        if(rb.velocity.y < minVelocityBeforeFastFall)
+        {
+            rb.AddForce(Vector2.down * fastFallForce);
         }
     }
 
