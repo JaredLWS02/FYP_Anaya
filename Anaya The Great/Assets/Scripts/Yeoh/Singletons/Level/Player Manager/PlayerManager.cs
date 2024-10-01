@@ -29,6 +29,20 @@ public class PlayerManager : MonoBehaviour
 
     // ============================================================================
 
+    [HideInInspector]
+    public GameObject player;
+
+    void Update()
+    {
+        if(characters.Count>0)
+        {
+            player = characters[0];
+        }
+        else player = null;
+    }
+
+    // ============================================================================
+
     public int GetIndex(GameObject obj)
     {
         int index=0;
@@ -66,9 +80,10 @@ public class PlayerManager : MonoBehaviour
             i=0;
         }
 
-        EventManager.Current.OnSwitch(switcher, characters[i]);
+        EventManager.Current.OnSwitchPilot(switcher, Pilot.Type.AI);
+        EventManager.Current.OnSwitchPilot(characters[i], Pilot.Type.Player);
 
-        Debug.Log($"Switched from {switcher.name} to {characters[i].name}");
+        Debug.Log($"Switched Player from {switcher.name} to {characters[i].name}");
     }
 
     IEnumerator SwitchCoolingDown()

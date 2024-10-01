@@ -20,25 +20,20 @@ public class Pilot : MonoBehaviour
 
     void OnEnable()
     {
-        EventManager.Current.SwitchEvent += SwitchPilot;
+        EventManager.Current.SwitchPilotEvent += SwitchPilot;
     }
     void OnDisable()
     {
-        EventManager.Current.SwitchEvent -= SwitchPilot;
+        EventManager.Current.SwitchPilotEvent -= SwitchPilot;
     }
 
     // Events ============================================================================
 
-    void SwitchPilot(GameObject from, GameObject to)
+    void SwitchPilot(GameObject who, Type to)
     {
-        if(gameObject==from)
-        {
-            type = Type.AI;
-        }
-        else if(gameObject==to)
-        {
-            type = Type.Player;
-        }
+        if(gameObject!=who) return;
+
+        type = to;
     }
 
     //  ============================================================================
@@ -77,6 +72,18 @@ public class Pilot : MonoBehaviour
 
         EventManager.Current.OnTryJump(gameObject, input);
     }
+
+
+
+
+
+
+
+
+
+    
+
+    //  Old ============================================================================
 
     void OnInputSwitch()
     {

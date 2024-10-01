@@ -46,7 +46,6 @@ public class EventManager : MonoBehaviour
     public event Action<GameObject, float> TryMoveXEvent;
     public event Action<GameObject, float> TryMoveYEvent;
     public event Action<GameObject, float> TryJumpEvent;
-    public event Action<GameObject> TrySwitchEvent;
 
     public void OnTryMoveX(GameObject mover, float input_x)
     {
@@ -59,18 +58,14 @@ public class EventManager : MonoBehaviour
     public void OnTryJump(GameObject jumper, float input)
     {
         TryJumpEvent?.Invoke(jumper, input);
-    }   
-    public void OnTrySwitch(GameObject switcher)
-    {
-        TrySwitchEvent?.Invoke(switcher);
-    }  
+    }
+
 
     // Actual Actions ==================================================================================================================
 
     public event Action<GameObject, float> MoveXEvent;
     public event Action<GameObject, float> MoveYEvent;
     public event Action<GameObject, float> JumpEvent;
-    public event Action<GameObject, GameObject> SwitchEvent;
     
     public void OnMoveX(GameObject mover, float input_x)
     {
@@ -84,10 +79,7 @@ public class EventManager : MonoBehaviour
     {
         JumpEvent?.Invoke(jumper, input);
     }
-    public void OnSwitch(GameObject from, GameObject to)
-    {
-        SwitchEvent?.Invoke(from, to);
-    }   
+
     
     // Combat ==================================================================================================================
 
@@ -112,7 +104,18 @@ public class EventManager : MonoBehaviour
     {
         DeathEvent?.Invoke(victim, killer, hurtInfo);
     }
+
     
+    // Control ==================================================================================================================
+
+    public event Action<GameObject, Pilot.Type> SwitchPilotEvent;
+
+    public void OnSwitchPilot(GameObject who, Pilot.Type to)
+    {
+        SwitchPilotEvent?.Invoke(who, to);
+    }   
+
+
     // UI ==================================================================================================================
 
     public event Action<GameObject, float, float> UIBarUpdateEvent;
@@ -139,6 +142,7 @@ public class EventManager : MonoBehaviour
         ClickObjectEvent?.Invoke(clicked);
     }
     
+
     // Sound ==================================================================================================================
 
     public event Action<GameObject> IdleVoiceEvent;
@@ -147,5 +151,14 @@ public class EventManager : MonoBehaviour
     {
         IdleVoiceEvent?.Invoke(subject);
     }
+
     
+    // Old ==================================================================================================================
+
+    public event Action<GameObject> TrySwitchEvent;
+    
+    public void OnTrySwitch(GameObject switcher)
+    {
+        TrySwitchEvent?.Invoke(switcher);
+    }  
 }
