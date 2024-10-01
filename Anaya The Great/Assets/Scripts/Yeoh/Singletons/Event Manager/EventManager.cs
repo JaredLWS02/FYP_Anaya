@@ -31,6 +31,7 @@ public class EventManager : MonoBehaviour
     {
         if(Current!=this) Destroy(gameObject);
     }
+    
 
     // Actors ==================================================================================================================
 
@@ -40,6 +41,17 @@ public class EventManager : MonoBehaviour
     {
         SpawnEvent?.Invoke(spawned);
     }
+
+
+    // Control ==================================================================================================================
+
+    public event Action<GameObject, Pilot.Type> SwitchPilotEvent;
+
+    public void OnSwitchPilot(GameObject who, Pilot.Type to)
+    {
+        SwitchPilotEvent?.Invoke(who, to);
+    }   
+
 
     // Try Actions ==================================================================================================================
 
@@ -106,14 +118,14 @@ public class EventManager : MonoBehaviour
     }
 
     
-    // Control ==================================================================================================================
+    // Item ==================================================================================================================
+    
+    public event Action<GameObject, GameObject, LootInfo> LootEvent;
 
-    public event Action<GameObject, Pilot.Type> SwitchPilotEvent;
-
-    public void OnSwitchPilot(GameObject who, Pilot.Type to)
+    public void OnLoot(GameObject looter, GameObject loot, LootInfo lootInfo)
     {
-        SwitchPilotEvent?.Invoke(who, to);
-    }   
+        LootEvent?.Invoke(looter, loot, lootInfo);
+    }
 
 
     // UI ==================================================================================================================

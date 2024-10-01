@@ -16,7 +16,7 @@ public class Parallax : MonoBehaviour
         startPos = transform.position;
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////
+    // ============================================================================
 
     public bool fixedUpdate = true;
 
@@ -36,7 +36,7 @@ public class Parallax : MonoBehaviour
         Loop();
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////
+    // ============================================================================
 
     Vector2 startPos;
     Vector2 offsetPos;
@@ -55,7 +55,7 @@ public class Parallax : MonoBehaviour
         transform.position = startPos + offsetPos;
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////
+    // ============================================================================
     
     public bool loopX=true, loopY=true;
 
