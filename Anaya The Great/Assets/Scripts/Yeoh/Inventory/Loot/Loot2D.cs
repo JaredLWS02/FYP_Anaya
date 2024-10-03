@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LootInfo
 {
-    public Item item;
+    public ItemSO item;
     public int quantity;
     public Vector3 contactPoint;
 }
@@ -23,7 +23,7 @@ public class Loot2D : MonoBehaviour
 
     // ============================================================================
 
-    public Item item;
+    public ItemSO item;
     public int quantity=1;
 
     void OnEnable()

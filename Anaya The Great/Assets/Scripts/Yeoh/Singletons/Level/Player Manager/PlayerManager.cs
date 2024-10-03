@@ -42,23 +42,6 @@ public class PlayerManager : MonoBehaviour
     }
 
     // ============================================================================
-
-    public int GetIndex(GameObject obj)
-    {
-        int index=0;
-
-        for(int i=0; i<characters.Count; i++)
-        {
-            if(obj == characters[i])
-            {
-                index=i;
-            }
-        }
-
-        return index;
-    }
-
-    // ============================================================================
     
     bool canSwitch=true;
     public float switchCooldown=.5f;
@@ -71,19 +54,22 @@ public class PlayerManager : MonoBehaviour
         if(!canSwitch) return;
         StartCoroutine(SwitchCoolingDown());
 
-        int i = GetIndex(switcher);
+        int from_index = characters.IndexOf(switcher);
+        if(from_index<0) return;
 
-        i++;
+        int to_index = from_index+1;
 
-        if(i >= characters.Count)
+        if(to_index >= characters.Count)
         {
-            i=0;
+            to_index=0;
         }
 
-        EventManager.Current.OnSwitchPilot(switcher, Pilot.Type.AI);
-        EventManager.Current.OnSwitchPilot(characters[i], Pilot.Type.Player);
+        if(to_index == from_index) return;
 
-        Debug.Log($"Switched Player from {switcher.name} to {characters[i].name}");
+        EventManager.Current.OnSwitchPilot(switcher, Pilot.Type.AI);
+        EventManager.Current.OnSwitchPilot(characters[to_index], Pilot.Type.Player);
+
+        Debug.Log($"Switched Player from {switcher.name} to {characters[to_index].name}");
     }
 
     IEnumerator SwitchCoolingDown()

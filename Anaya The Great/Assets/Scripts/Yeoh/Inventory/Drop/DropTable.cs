@@ -7,11 +7,10 @@ public class DropTable : MonoBehaviour
     [System.Serializable]
     public class ItemDrop
     {
-        public string name;
-        public Item item;
-        public float percent=100;
+        public ItemSO item;
         public Vector2Int quantity = new(1, 1);
-        public bool stackQuantity=false;
+        public bool stacked=false;
+        public float percent=100;
     }
 
     // ============================================================================
@@ -26,7 +25,7 @@ public class DropTable : MonoBehaviour
             {
                 int quantity = Random.Range(drop.quantity.x, drop.quantity.y+1);
 
-                if(drop.stackQuantity)
+                if(drop.stacked)
                 {
                     ItemManager.Current.Spawn(transform.position, drop.item, quantity);
                 }
