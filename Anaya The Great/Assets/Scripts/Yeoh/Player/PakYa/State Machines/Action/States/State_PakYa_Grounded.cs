@@ -33,5 +33,6 @@ public class State_PakYa_Grounded : BaseState
     {
         pakya.AllowJump = toggle;
         pakya.AllowDash = toggle;
+        pakya.AllowCast = toggle;
     }
 }

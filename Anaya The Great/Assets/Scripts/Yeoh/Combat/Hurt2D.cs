@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+
 public class Hurt2D : MonoBehaviour
 {
     Rigidbody2D rb;
-    HPManager hp;
-
-    public string subjectName;
 
     void Awake()
     {
         rb=GetComponent<Rigidbody2D>();
-        hp=GetComponent<HPManager>();
 
         maxPoise=poise;
     }
@@ -22,11 +20,15 @@ public class Hurt2D : MonoBehaviour
         CheckPoiseRegen();
     }
 
-    public void Hit(GameObject attacker, HurtInfo hurtInfo)
+    // ============================================================================
+
+    public HPManager hp;
+
+    public void Hurt(GameObject attacker, HurtInfo hurtInfo)
     {
         if(iframe) return;
 
-        hurtInfo.victimName = subjectName;
+        hurtInfo.victimName = gameObject.name;
 
         EventManager.Current.OnHurt(gameObject, attacker, hurtInfo);
         
@@ -45,6 +47,8 @@ public class Hurt2D : MonoBehaviour
             Die(attacker, hurtInfo);
         }
     }
+
+    // ============================================================================
 
     [Header("iFrame")]
     public bool iframe;
@@ -94,6 +98,8 @@ public class Hurt2D : MonoBehaviour
         }
     }
 
+    // ============================================================================
+
     [Header("Poise")]
     public float poise;
     float maxPoise;
@@ -128,6 +134,8 @@ public class Hurt2D : MonoBehaviour
         }
     }
 
+    // ============================================================================
+
     public void Knockback(float force, Vector3 contactPoint)
     {
         Vector3 kbVector = rb.transform.position - contactPoint;
@@ -137,11 +145,13 @@ public class Hurt2D : MonoBehaviour
         rb.AddForce(kbVector.normalized * force, ForceMode2D.Impulse);
     }
 
+    // ============================================================================
+
     void Die(GameObject killer, HurtInfo hurtInfo)
     {
         SpriteManager.Current.RevertColor(gameObject);
         
-        hurtInfo.victimName = subjectName;
+        hurtInfo.victimName = gameObject.name;
 
         EventManager.Current.OnDeath(gameObject, killer, hurtInfo);
     }

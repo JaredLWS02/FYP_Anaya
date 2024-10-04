@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ItemSO : ScriptableObject
 {
-    public AnimatorOverrideController icon;
+    public AnimatorOverrideController iconAnimOV;
 
     public string Name;
 

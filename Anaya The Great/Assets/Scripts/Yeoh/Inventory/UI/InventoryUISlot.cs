@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class InventoryUISlot : MonoBehaviour
 {
+    [HideInInspector]
     public InventorySlot slot;
     
     // ============================================================================
@@ -32,7 +33,7 @@ public class InventoryUISlot : MonoBehaviour
 
         if(anim.gameObject.activeSelf)
         {
-            anim.runtimeAnimatorController = slot.item.icon;
+            anim.runtimeAnimatorController = slot.item.iconAnimOV;
         }
 
         // sync ui icon with the animator that is animating the sprite renderer

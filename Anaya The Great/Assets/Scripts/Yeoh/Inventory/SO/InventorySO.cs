@@ -44,6 +44,12 @@ public class InventorySO : ScriptableObject
 
     public void AddSlot(ItemSO item, int quantity)
     {
+        if(HasSlot(item))
+        {
+            Debug.Log($"Already have slot: {item.Name}");
+            return;
+        }
+
         InventorySlot slot = new()
         {
             item = item,
@@ -55,6 +61,8 @@ public class InventorySO : ScriptableObject
 
     public void RemoveSlot(InventorySlot slot)
     {
+        if(!slots.Contains(slot)) return;
+
         slots.Remove(slot);
     }
 

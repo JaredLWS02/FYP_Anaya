@@ -31,16 +31,16 @@ public class InventoryUI : MonoBehaviour
 
     public int maxUiSlots=45;
 
-    List<InventoryUISlot> ui_slots = new();
-
     public InventoryUISlot inventoryUiSlotPrefab;
+
+    public List<InventoryUISlot> ui_slots = new();
 
     [ContextMenu("Spawn and Assign UI Slots")]
     void SpawnAndAssignSlots()
     {
         for(int i=0; i < maxUiSlots; i++)
         {
-            InventoryUISlot newSlot = (InventoryUISlot)PrefabUtility.InstantiatePrefab(inventoryUiSlotPrefab, transform);
+            InventoryUISlot newSlot = Instantiate(inventoryUiSlotPrefab, transform);
             // record to be able to undo (ctrl z)
             Undo.RegisterCreatedObjectUndo(newSlot.gameObject, "Spawn Inventory UI Slot");
         }
