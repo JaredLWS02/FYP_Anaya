@@ -115,6 +115,14 @@ public class AbilityListSO : ScriptableObject
         }
     }
 
+    public void ResetCooldowns()
+    {
+        foreach(var ability in abilities)
+        {
+            ability.ResetCooldown();
+        }
+    }
+
     // Leftovers ============================================================================
 
     public void CleanUp()

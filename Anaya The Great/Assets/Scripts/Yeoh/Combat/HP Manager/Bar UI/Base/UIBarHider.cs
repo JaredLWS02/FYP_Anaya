@@ -12,6 +12,11 @@ public class UIBarHider : MonoBehaviour
 
     // ============================================================================
 
+    void OnEnable()
+    {
+        Reset();
+    }
+
     void Update()
     {
         CheckUIVisibility();
@@ -42,6 +47,12 @@ public class UIBarHider : MonoBehaviour
 
     bool canShow=true;
     bool canHide;
+
+    void Reset()
+    {
+        canShow=true;
+        canHide=false;
+    }
 
     void HideUI()
     {

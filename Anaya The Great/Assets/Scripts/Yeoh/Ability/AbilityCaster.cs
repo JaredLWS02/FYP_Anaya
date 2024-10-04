@@ -15,6 +15,8 @@ public class AbilityCaster : MonoBehaviour
 
     void OnEnable()
     {
+        abilityList.ResetCooldowns();
+
         EventManager.Current.StartCastEvent += OnStartCast;
         EventManager.Current.CastingEvent += OnCasting;
         EventManager.Current.CastWindUpEvent += OnCastWindUp;
@@ -24,6 +26,8 @@ public class AbilityCaster : MonoBehaviour
     }
     void OnDisable()
     {
+        abilityList.ResetCooldowns();
+
         EventManager.Current.StartCastEvent -= OnStartCast;
         EventManager.Current.CastingEvent -= OnCasting;
         EventManager.Current.CastWindUpEvent -= OnCastWindUp;
