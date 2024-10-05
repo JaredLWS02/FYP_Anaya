@@ -21,5 +21,5 @@ public class AbilitySO : ScriptableObject
 
     [Header("Animations")]
     public AnimatorOverrideController castingAnimOV;
-    public AnimatorOverrideController castWindUpAnimOV;
+    public AnimatorOverrideController castAnimOV;
 }
