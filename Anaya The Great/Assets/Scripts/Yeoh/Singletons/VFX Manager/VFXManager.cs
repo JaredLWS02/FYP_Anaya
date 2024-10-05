@@ -12,7 +12,7 @@ public class VFXManager : MonoBehaviour
         if(!Current) Current=this;
     }
     
-    // Event Manager ============================================================================
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     void OnEnable()
     {
@@ -34,8 +34,6 @@ public class VFXManager : MonoBehaviour
         // EventManager.Current.EnderPearlEvent -= OnEnderPearl;
         // EventManager.Current.MaceSlamEvent -= OnMaceSlam;
     }
-
-    // Events ============================================================================
     
     // void OnHurt(GameObject victim, GameObject attacker, HurtInfo hurtInfo)
     // {

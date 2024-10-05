@@ -28,6 +28,6 @@ public class GenericHurt : MonoBehaviour
     {
         if(victim!=gameObject) return;
 
-        hurt.Hurt(attacker, hurtInfo);
+        hurt.Hit(attacker, hurtInfo);
     }
 }

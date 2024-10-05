@@ -53,44 +53,45 @@ public class EventManager : MonoBehaviour
     }   
 
 
-    // Actions ==================================================================================================================
+    // Try Actions ==================================================================================================================
 
     public event Action<GameObject, float> TryMoveXEvent;
-    public event Action<GameObject, float> MoveXEvent;
+    public event Action<GameObject, float> TryMoveYEvent;
+    public event Action<GameObject, float> TryJumpEvent;
 
     public void OnTryMoveX(GameObject mover, float input_x)
     {
         TryMoveXEvent?.Invoke(mover, input_x);
-    }  
-    public void OnMoveX(GameObject mover, float input_x)
-    {
-        MoveXEvent?.Invoke(mover, input_x);
-    } 
-
-    public event Action<GameObject, float> TryMoveYEvent;
-    public event Action<GameObject, float> MoveYEvent;
-
+    }   
     public void OnTryMoveY(GameObject mover, float input_y)
     {
         TryMoveYEvent?.Invoke(mover, input_y);
-    } 
-    public void OnMoveY(GameObject mover, float input_y)
-    {
-        MoveYEvent?.Invoke(mover, input_y);
-    }
-
-    public event Action<GameObject, float> TryJumpEvent;
-    public event Action<GameObject, float> JumpEvent;
-
+    }   
     public void OnTryJump(GameObject jumper, float input)
     {
         TryJumpEvent?.Invoke(jumper, input);
     }
+
+
+    // Actual Actions ==================================================================================================================
+
+    public event Action<GameObject, float> MoveXEvent;
+    public event Action<GameObject, float> MoveYEvent;
+    public event Action<GameObject, float> JumpEvent;
+    
+    public void OnMoveX(GameObject mover, float input_x)
+    {
+        MoveXEvent?.Invoke(mover, input_x);
+    }   
+    public void OnMoveY(GameObject mover, float input_y)
+    {
+        MoveYEvent?.Invoke(mover, input_y);
+    }
     public void OnJump(GameObject jumper, float input)
     {
         JumpEvent?.Invoke(jumper, input);
-    }    
-    
+    }
+
     
     // Combat ==================================================================================================================
 
@@ -127,72 +128,17 @@ public class EventManager : MonoBehaviour
     }
 
 
-    // Base Ability ==================================================================================================================
-    
-    public event Action<GameObject, AbilitySO> TryStartCastEvent;
-    public event Action<GameObject, AbilitySO> StartCastEvent;
-    
-    public void OnTryStartCast(GameObject caster, AbilitySO abilitySO)
-    {
-        TryStartCastEvent?.Invoke(caster, abilitySO);
-    }
-    public void OnStartCast(GameObject caster, AbilitySO abilitySO)
-    {
-        StartCastEvent?.Invoke(caster, abilitySO);
-    }
-
-    public event Action<GameObject, Ability> CastingEvent;
-    public event Action<GameObject, Ability> CastWindUpEvent;
-    public event Action<GameObject, Ability> CastReleaseEvent;
-    public event Action<GameObject> CastFinishEvent;
-    public event Action<GameObject> CastCancelEvent;
-
-    public void OnCasting(GameObject caster, Ability ability)
-    {
-        CastingEvent?.Invoke(caster, ability);
-    }
-    public void OnCastWindUp(GameObject caster, Ability ability)
-    {
-        CastWindUpEvent?.Invoke(caster, ability);
-    }
-    public void OnCastRelease(GameObject caster, Ability ability)
-    {
-        CastReleaseEvent?.Invoke(caster, ability);
-    }
-    public void OnCastFinish(GameObject caster)
-    {
-        CastFinishEvent?.Invoke(caster);
-    }
-    public void OnCastCancel(GameObject caster)
-    {
-        CastCancelEvent?.Invoke(caster);
-    }
-
-    // Unique Abilities ==================================================================================================================
-
-    public event Action<GameObject> CastHealEvent;
-    
-    public void OnCastHeal(GameObject caster)
-    {
-        CastHealEvent?.Invoke(caster);
-    }
-
     // UI ==================================================================================================================
 
     public event Action<GameObject, float, float> UIBarUpdateEvent;
+    public event Action<Vector3> Click2DEvent;
+    public event Action<Vector3, float, Vector3, Vector3, Vector3> Swipe2DEvent;
+    public event Action<GameObject> ClickObjectEvent;
 
     public void OnUIBarUpdate(GameObject owner, float value, float valueMax)
     {
         UIBarUpdateEvent?.Invoke(owner, value, valueMax);
     }
-
-
-    // Mouse/Touch ==================================================================================================================
-
-    public event Action<Vector3> Click2DEvent;
-    public event Action<Vector3, float, Vector3, Vector3, Vector3> Swipe2DEvent;
-    public event Action<GameObject> ClickObjectEvent;
-    
     public void OnClick2D(Vector3 pos)
     {
         Click2DEvent?.Invoke(pos);
