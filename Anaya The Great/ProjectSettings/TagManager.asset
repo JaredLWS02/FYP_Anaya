@@ -11,10 +11,10 @@ TagManager:
   - Player
   - Water
   - UI
-  - Obstacle
-  - 
-  - 
-  - 
+  - PlayerHurtbox
+  - Enemy
+  - EnemyHurtbox
+  - Platform
   - 
   - 
   - 
@@ -38,6 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BG
+    uniqueID: 385031937
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Actors
+    uniqueID: 2587937775
+    locked: 0
+  - name: FG
+    uniqueID: 863818425
     locked: 0
