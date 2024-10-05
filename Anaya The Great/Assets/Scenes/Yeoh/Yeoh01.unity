@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 331612511}
   - component: {fileID: 331612510}
   - component: {fileID: 331612509}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ MonoBehaviour:
   groundCheck: {fileID: 1464050184}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 64
 --- !u!61 &595744097
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -564,8 +564,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wolfTr: {fileID: 1241917171}
-  tweenSpeed: 4
-  cooldownTime: 1
+  tweenTime: 0.2
+  cooldownTime: 2
 --- !u!114 &595744101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -628,7 +628,7 @@ GameObject:
   - component: {fileID: 662132196}
   - component: {fileID: 662132195}
   - component: {fileID: 662132194}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -786,7 +786,7 @@ GameObject:
   - component: {fileID: 803624522}
   - component: {fileID: 803624521}
   - component: {fileID: 803624520}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -941,7 +941,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1035978529}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
