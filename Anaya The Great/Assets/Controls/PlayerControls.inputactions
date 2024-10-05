@@ -24,7 +24,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Input North",
+                    "name": "Input Heal",
                     "type": "Button",
                     "id": "941875e0-8d9b-4a4a-a799-3239c523c5ee",
                     "expectedControlType": "Button",
@@ -244,11 +244,11 @@
                 {
                     "name": "",
                     "id": "0662d965-ac1b-42fb-b1ba-4bf0eab5d30f",
-                    "path": "<Keyboard>/leftShift",
+                    "path": "<Keyboard>/h",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Input North",
+                    "action": "Input Heal",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -259,7 +259,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Input North",
+                    "action": "Input Heal",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -270,7 +270,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Input North",
+                    "action": "Input Heal",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
