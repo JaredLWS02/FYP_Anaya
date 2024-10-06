@@ -15,7 +15,6 @@ public class EnemyAttackRange : MonoBehaviour
         if (enemy.stun)
         {
             this.gameObject.SetActive(false);
-            enemy.attObjVisible = false;
         }
     }
 

@@ -51,7 +51,12 @@ public class PlayerAttack : MonoBehaviour
 
                     for (int i = 0; i < enemiesToDamage.Length; i++)
                     {
-                        enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(dmg);
+                        // Counter damage
+                        if (enemiesToDamage[i].GetComponent<Enemy>().stun)
+                            enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(dmg * 2);
+                        // Normal damage
+                        else
+                            enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(dmg);
                     }
 
                     timeBtwLightAtt = startTimeBtwLightAtt;
@@ -61,11 +66,16 @@ public class PlayerAttack : MonoBehaviour
             // Heavy attack
             if (Input.GetKey(KeyCode.Q))
             {
-                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attPos.position, range, enemyAttRange);
+                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attPos.position, range, enemies);
 
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                    enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(dmgHeavy);
+                    // Counter damage
+                    if (enemiesToDamage[i].GetComponent<Enemy>().stun)
+                        enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(dmgHeavy * 2);
+                    // Normal damage
+                    else
+                        enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(dmgHeavy);
                 }
 
                 lightAttCount = 0;
@@ -94,14 +104,14 @@ public class PlayerAttack : MonoBehaviour
             }
         }
 
+        // Parry
         if (Input.GetKey(KeyCode.F))
         {
-            Collider2D[] enemiesToParry = Physics2D.OverlapCircleAll(attPos.position, range, enemies);
+            Collider2D[] enemiesToParry = Physics2D.OverlapCircleAll(attPos.position, range, enemyAttRange);
 
             for (int i = 0; i < enemiesToParry.Length; i++)
             {
-                if (enemiesToParry[i].GetComponentInParent<Enemy>().attObjVisible)
-                    enemiesToParry[i].GetComponentInParent<Enemy>().Stunned();
+                enemiesToParry[i].GetComponentInParent<Enemy>().Stunned();
             }
         }
     }

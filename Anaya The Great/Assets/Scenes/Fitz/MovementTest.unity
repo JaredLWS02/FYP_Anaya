@@ -233,7 +233,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -814,7 +814,6 @@ MonoBehaviour:
   stunTimerDuration: 5
   attObj: {fileID: 120408284}
   stun: 0
-  attObjVisible: 0
 --- !u!1 &1413686504
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,7 +1014,7 @@ MonoBehaviour:
     m_Bits: 128
   enemyAttRange:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   range: 1.5
   dmgLight: 10
   dmgLightFinisher: 20
