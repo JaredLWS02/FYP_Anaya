@@ -812,6 +812,7 @@ MonoBehaviour:
   health: 1000
   startTimeBtwAtt: 3
   stunTimerDuration: 5
+  attackTime: 1
   attObj: {fileID: 120408284}
   stun: 0
 --- !u!1 &1413686504
@@ -1069,7 +1070,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1741936954
 Transform:
   m_ObjectHideFlags: 0

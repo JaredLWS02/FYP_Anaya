@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public float startTimeBtwAtt;
     private float stunTimer;
     public float stunTimerDuration;
+    public float attackTime;
 
     public GameObject attObj;
 
@@ -71,7 +72,7 @@ public class Enemy : MonoBehaviour
     private IEnumerator EnemyAttack()
     {
         attObj.SetActive (true);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(attackTime);
         attObj.SetActive(false);
     }
 
