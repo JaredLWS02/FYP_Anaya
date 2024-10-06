@@ -13,6 +13,7 @@ public class PlayerAttack : MonoBehaviour
 
     public Transform attPos;
     public LayerMask enemies;
+    public LayerMask enemyAttRange;
     public float range;
     private int dmg;
     public int dmgLight;
@@ -60,7 +61,7 @@ public class PlayerAttack : MonoBehaviour
             // Heavy attack
             if (Input.GetKey(KeyCode.Q))
             {
-                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attPos.position, range, enemies);
+                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attPos.position, range, enemyAttRange);
 
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
@@ -90,6 +91,17 @@ public class PlayerAttack : MonoBehaviour
             {
                 Debug.Log("Combo timer past cooldown point, resetting combo");
                 messageSent = true;
+            }
+        }
+
+        if (Input.GetKey(KeyCode.F))
+        {
+            Collider2D[] enemiesToParry = Physics2D.OverlapCircleAll(attPos.position, range, enemies);
+
+            for (int i = 0; i < enemiesToParry.Length; i++)
+            {
+                if (enemiesToParry[i].GetComponentInParent<Enemy>().attObjVisible)
+                    enemiesToParry[i].GetComponentInParent<Enemy>().Stunned();
             }
         }
     }
