@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 120408286}
   - component: {fileID: 120408288}
   - component: {fileID: 120408289}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1014,7 +1014,7 @@ MonoBehaviour:
     m_Bits: 128
   enemyAttRange:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 256
   range: 1.5
   dmgLight: 10
   dmgLightFinisher: 20
