@@ -127,37 +127,37 @@ public class EventManager : MonoBehaviour
     }
 
 
-    // Base Ability ==================================================================================================================
+    // Ability ==================================================================================================================
     
-    public event Action<GameObject, AbilitySO> TryStartCastEvent;
-    public event Action<GameObject, AbilitySO> StartCastEvent;
+    public event Action<GameObject, string> TryStartCastEvent;
+    public event Action<GameObject, string> StartCastEvent;
     
-    public void OnTryStartCast(GameObject caster, AbilitySO abilitySO)
+    public void OnTryStartCast(GameObject caster, string ability_name)
     {
-        TryStartCastEvent?.Invoke(caster, abilitySO);
+        TryStartCastEvent?.Invoke(caster, ability_name);
     }
-    public void OnStartCast(GameObject caster, AbilitySO abilitySO)
+    public void OnStartCast(GameObject caster, string ability_name)
     {
-        StartCastEvent?.Invoke(caster, abilitySO);
+        StartCastEvent?.Invoke(caster, ability_name);
     }
 
-    public event Action<GameObject, Ability> CastingEvent;
-    public event Action<GameObject, Ability> CastWindUpEvent;
-    public event Action<GameObject, Ability> CastReleaseEvent;
+    public event Action<GameObject, AbilitySlot> CastingEvent;
+    public event Action<GameObject, AbilitySlot> CastWindUpEvent;
+    public event Action<GameObject, AbilitySlot> CastReleaseEvent;
     public event Action<GameObject> CastFinishEvent;
     public event Action<GameObject> CastCancelEvent;
 
-    public void OnCasting(GameObject caster, Ability ability)
+    public void OnCasting(GameObject caster, AbilitySlot abilitySlot)
     {
-        CastingEvent?.Invoke(caster, ability);
+        CastingEvent?.Invoke(caster, abilitySlot);
     }
-    public void OnCastWindUp(GameObject caster, Ability ability)
+    public void OnCastWindUp(GameObject caster, AbilitySlot abilitySlot)
     {
-        CastWindUpEvent?.Invoke(caster, ability);
+        CastWindUpEvent?.Invoke(caster, abilitySlot);
     }
-    public void OnCastRelease(GameObject caster, Ability ability)
+    public void OnCastRelease(GameObject caster, AbilitySlot abilitySlot)
     {
-        CastReleaseEvent?.Invoke(caster, ability);
+        CastReleaseEvent?.Invoke(caster, abilitySlot);
     }
     public void OnCastFinish(GameObject caster)
     {
@@ -168,14 +168,6 @@ public class EventManager : MonoBehaviour
         CastCancelEvent?.Invoke(caster);
     }
 
-    // Unique Abilities ==================================================================================================================
-
-    public event Action<GameObject> CastHealEvent;
-    
-    public void OnCastHeal(GameObject caster)
-    {
-        CastHealEvent?.Invoke(caster);
-    }
 
     // UI ==================================================================================================================
 

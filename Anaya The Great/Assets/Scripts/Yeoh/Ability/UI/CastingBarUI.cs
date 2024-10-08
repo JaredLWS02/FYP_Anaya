@@ -29,13 +29,13 @@ public class CastingBarUI : MonoBehaviour
 
     // Events ============================================================================
 
-    void OnCasting(GameObject caster, Ability ability)
+    void OnCasting(GameObject caster, AbilitySlot ability)
     {
         if(caster!=owner) return;
 
         progress=0;
         barUI.SetActive(true);
-        TweenFloat(1, ability.SO.castingTime);
+        TweenFloat(1, ability.ability.castingTime);
     }
 
     void OnCastCancel(GameObject caster)
@@ -46,7 +46,7 @@ public class CastingBarUI : MonoBehaviour
         barUI.SetActive(false);
     }
 
-    void OnCastingWindUp(GameObject caster, Ability ability)
+    void OnCastingWindUp(GameObject caster, AbilitySlot ability)
     {
         if(caster!=owner) return;
 

@@ -12,6 +12,7 @@ public class AbilitySO : ScriptableObject
     [TextArea]
     public string description;
 
+    public float magnitude=20;
     public float cost=10;
     public float castingTime=1;
     public float cooldown=3;
