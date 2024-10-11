@@ -71,10 +71,9 @@ public class Jump2D : MonoBehaviour
         {
             Jump();            
         }
-        else if(extraJumpsLeft>0)
+        else
         {
-            extraJumpsLeft--;
-            Jump();
+            DoExtraJump();
         }
     }
 
@@ -87,31 +86,42 @@ public class Jump2D : MonoBehaviour
 
         rb.AddForce(Vector2.up*jumpForce, ForceMode2D.Impulse);
 
-        jumpBufferLeft = 0;
-        coyoteTimeLeft = 0;
+        jumpBufferLeft = -1;
+        coyoteTimeLeft = -1;
     }
 
-    // Extra Jump ============================================================================
+    // Cooldown ============================================================================
 
-    [Header("Extra Jumps")]
-    public int extraJumps=1;
-    int extraJumpsLeft;
     public float jumpCooldown=.2f;
     bool isJumpCooling;
-
-    void UpdateExtraJumps()
-    {
-        if(IsGrounded())
-        {
-            extraJumpsLeft = extraJumps;
-        }
-    }
 
     IEnumerator JumpCooling()
     {
         isJumpCooling=true;
         yield return new WaitForSeconds(jumpCooldown);
         isJumpCooling=false;
+    }
+
+    // Extra Jump ============================================================================
+
+    public int extraJumps=1;
+    int extraJumpsLeft;
+
+    void UpdateExtraJumps()
+    {
+        // Only replenish extra jumps if grounded and jump not cooling
+        if(IsGrounded() && !isJumpCooling)
+        {
+            extraJumpsLeft = extraJumps;
+        }
+    }
+
+    void DoExtraJump()
+    {
+        if(extraJumpsLeft<=0) return;
+
+        extraJumpsLeft--;
+        Jump();
     }
 
     // Jump Buffer ============================================================================
@@ -144,7 +154,8 @@ public class Jump2D : MonoBehaviour
     {
         coyoteTimeLeft -= Time.deltaTime;
 
-        if(IsGrounded())
+        // Only replenish coyote time if grounded and jump not cooling
+        if(IsGrounded() && !isJumpCooling)
         {
             coyoteTimeLeft = coyoteTime;
         }
