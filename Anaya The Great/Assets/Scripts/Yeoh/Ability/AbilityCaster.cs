@@ -38,51 +38,52 @@ public class AbilityCaster : MonoBehaviour
 
     // Start ============================================================================
     
-    void OnStartCast(GameObject caster, AbilitySO abilitySO)
+    void OnStartCast(GameObject caster, string ability_name)
     {
         if(caster!=gameObject) return;
 
         if(isCasting) return;
 
-        // if got that ability
-        if(abilityList.HasAbility(abilitySO, out Ability ability))
-        {
-            // not on cooldown
-            if(ability.IsCooling()) return;
+        AbilitySlot abilitySlot = abilityList.GetAbility(ability_name);
 
-            // not enough mp
-            if(MP_Manager.hp < abilitySO.cost) return;
+        // if dont have that ability
+        if(abilitySlot==null) return;
 
-            EventManager.Current.OnCasting(gameObject, ability);
-        }
+        // not on cooldown
+        if(abilitySlot.IsCooling()) return;
+
+        // not enough mp
+        if(MP_Manager.hp < abilitySlot.ability.cost) return;
+
+        EventManager.Current.OnCasting(gameObject, abilitySlot);
     }
 
     // Casting ============================================================================
 
-    void OnCasting(GameObject caster, Ability ability)
+    void OnCasting(GameObject caster, AbilitySlot abilitySlot)
     {
         if(caster!=gameObject) return;
 
-        castingRt = StartCoroutine(Casting(ability));
+        castingRt = StartCoroutine(Casting(abilitySlot));
     }
 
     Coroutine castingRt;
-    IEnumerator Casting(Ability ability)
+    IEnumerator Casting(AbilitySlot abilitySlot)
     {
         isCasting=true;
 
         //sfxCastingLoop = AudioManager.Current.LoopSFX(gameObject, SFXManager.Current.sfxCastingLoop);
 
-        yield return new WaitForSeconds(ability.SO.castingTime);
+        yield return new WaitForSeconds(abilitySlot.ability.castingTime);
 
-        EventManager.Current.OnCastWindUp(gameObject, ability);
+        EventManager.Current.OnCastWindUp(gameObject, abilitySlot);
 
         //if(sfxCastingLoop) AudioManager.Current.StopLoop(sfxCastingLoop);
     }
 
     // Done ============================================================================
 
-    void OnCastWindUp(GameObject caster, Ability ability)
+    void OnCastWindUp(GameObject caster, AbilitySlot abilitySlot)
     {
         if(caster!=gameObject) return;
 
@@ -92,14 +93,14 @@ public class AbilityCaster : MonoBehaviour
     
     // Release ============================================================================
 
-    void OnCastRelease(GameObject caster, Ability ability)
+    void OnCastRelease(GameObject caster, AbilitySlot abilitySlot)
     {
         if(caster!=gameObject) return;
 
         // mp cost
-        MP_Manager.Hurt(ability.SO.cost);
+        MP_Manager.Hurt(abilitySlot.ability.cost);
 
-        ability.DoCooldown();
+        abilitySlot.DoCooldown();
     }
 
     // Finish ============================================================================

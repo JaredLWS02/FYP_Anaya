@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class HealAbility : MonoBehaviour
 {
-    public AbilitySO healAbility;
-
     public HPManager hp;
-    public float healAmount=20;
 
     // Event Manager ============================================================================
 
@@ -16,48 +13,34 @@ public class HealAbility : MonoBehaviour
         //EventManager.Current.CastReleaseEvent += OnCastRelease;
         //temp, no anim event yet
         EventManager.Current.CastWindUpEvent += OnCastRelease;
-        EventManager.Current.CastHealEvent += OnCastHeal;
     }
     void OnDisable()
     {
         //EventManager.Current.CastReleaseEvent -= OnCastRelease;
         //temp, no anim event yet
         EventManager.Current.CastWindUpEvent -= OnCastRelease;
-        EventManager.Current.CastHealEvent -= OnCastHeal;
     }
 
     // Events ============================================================================
 
-    void OnCastRelease(GameObject caster, Ability ability)
+    void OnCastRelease(GameObject caster, AbilitySlot abilitySlot)
     {
         if(caster!=gameObject) return;
 
-        if(ability.SO!=healAbility) return;
+        if(abilitySlot.ability.name!="Heal") return;
 
-        EventManager.Current.OnCastHeal(gameObject);
+        hp.Add(abilitySlot.ability.magnitude);
 
         //temp, no anim event yet
-        EventManager.Current.OnCastRelease(gameObject, ability);
+        EventManager.Current.OnCastRelease(gameObject, abilitySlot);
         EventManager.Current.OnCastFinish(gameObject);
 
-        //DisableCastTrails();
-
-        //AudioManager.Current.PlaySFX(SFXManager.Current.sfxHeal1, transform.position);
-        //AudioManager.Current.PlaySFX(SFXManager.Current.sfxHeal2, transform.position);
-    }
-
-    void OnCastHeal(GameObject caster)
-    {
-        if(caster!=gameObject) return;
-
-        hp.Add(healAmount);
-
-        TempVFX();
+        TempFeedback(abilitySlot);
     }
 
     // Move to vfx manager later ============================================================================
 
-    void TempVFX()
+    void TempFeedback(AbilitySlot abilitySlot)
     {
         // flash sprite green
         SpriteManager.Current.FlashColor(gameObject, -1, 1, -1);
@@ -65,6 +48,11 @@ public class HealAbility : MonoBehaviour
         Vector3 top = SpriteManager.Current.GetColliderTop(gameObject);
 
         // pop up text
-        VFXManager.Current.SpawnPopUpText(top, $"+{healAmount}", Color.green);
+        VFXManager.Current.SpawnPopUpText(top, $"+{abilitySlot.ability.magnitude}", Color.green);
+
+        //DisableCastTrails();
+
+        //AudioManager.Current.PlaySFX(SFXManager.Current.sfxHeal1, transform.position);
+        //AudioManager.Current.PlaySFX(SFXManager.Current.sfxHeal2, transform.position);
     }
 }
