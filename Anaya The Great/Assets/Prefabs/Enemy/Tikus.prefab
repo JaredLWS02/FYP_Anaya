@@ -304,12 +304,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pilot: {fileID: 0}
-  AllowMoveX: 1
-  AllowMoveY: 1
-  AllowJump: 1
+  AllowMoveX: 0
+  AllowMoveY: 0
+  AllowJump: 0
   enemyTag: Player
   huggyRange: 1
-  attackRange: 3
+  attackRange: {x: 1, y: 3}
 --- !u!114 &2058864907272210523
 MonoBehaviour:
   m_ObjectHideFlags: 0

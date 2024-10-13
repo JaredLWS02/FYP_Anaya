@@ -120,7 +120,7 @@ public class AISideWander : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, innerRadius);
         Gizmos.DrawWireSphere(transform.position, outerRadius);
 
-        Gizmos.color = new Color(1, 0, 0, .5f);
+        Gizmos.color = new Color(1, 1, 1, .5f);
         Gizmos.DrawWireSphere(transform.position, maxRangeFromStart);
     }
 }
