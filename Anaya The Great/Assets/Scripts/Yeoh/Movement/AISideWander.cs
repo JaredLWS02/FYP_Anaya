@@ -28,9 +28,9 @@ public class AISideWander : MonoBehaviour
     public Vector2 interval = new(1,4);
 
     [Header("Ranges")]
-    public float innerRadius=1;
-    public float outerRadius=5;
-    public float maxRangeFromStart=10;
+    public float innerRadius=5;
+    public float outerRadius=10;
+    public float maxRangeFromStart=15;
 
     void OnEnable()
     {
@@ -59,9 +59,9 @@ public class AISideWander : MonoBehaviour
             Vector2 random_spot = RandomSpotInDoughnut();
 
             if(!IsWalkable(random_spot)) continue;
-            if(!IsGrounded(random_spot)) continue;
+            if(!IsGrounded(random_spot, out Vector2 contactPoint)) continue;
 
-            targetPos = random_spot;
+            targetPos = contactPoint;
             return;
         }
     }
@@ -83,11 +83,19 @@ public class AISideWander : MonoBehaviour
     public LayerMask groundLayer;
     public float groundCheckRange=1;
 
-    bool IsGrounded(Vector2 pos)
+    bool IsGrounded(Vector2 pos, out Vector2 contactPoint)
     {
         // Raycast down from the position to see if there's ground within a certain distance
         RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.down, groundCheckRange, groundLayer);
-        return hit.collider != null;
+        
+        if(hit.collider != null)
+        {
+            contactPoint = hit.point;  // Store the contact point where it hits the ground
+            return true;
+        }
+
+        contactPoint = Vector2.zero;  // zero value if no ground is hit
+        return false;
     }
 
     // ============================================================================
@@ -111,5 +119,8 @@ public class AISideWander : MonoBehaviour
         Gizmos.color = new Color(1, 0, 1, .5f);
         Gizmos.DrawWireSphere(transform.position, innerRadius);
         Gizmos.DrawWireSphere(transform.position, outerRadius);
+
+        Gizmos.color = new Color(1, 0, 0, .5f);
+        Gizmos.DrawWireSphere(transform.position, maxRangeFromStart);
     }
 }

@@ -25,6 +25,11 @@ public class PakYa : MonoBehaviour
         caster = GetComponent<AbilityCaster>();
     }
 
+    void Start()
+    {
+        EventManager.Current.OnSpawn(gameObject);
+    }
+
     // Actions ============================================================================
 
     [Header("Hold Toggles")]
@@ -67,6 +72,11 @@ public class PakYa : MonoBehaviour
 
         moveInput = value.Get<Vector2>();
     }
+
+    void Update()
+    {
+        UpdateMoveInput();
+    } 
 
     void UpdateMoveInput()
     {
@@ -133,18 +143,6 @@ public class PakYa : MonoBehaviour
 
         EventManager.Current.OnStartCast(gameObject, ability_name);
     }
-
-    // ============================================================================
-
-    void Start()
-    {
-        EventManager.Current.OnSpawn(gameObject);
-    }
-
-    void Update()
-    {
-        UpdateMoveInput();
-    }    
 
     // ============================================================================
 
