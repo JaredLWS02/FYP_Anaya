@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Pilot))]
+[RequireComponent(typeof(SideMove))]
 [RequireComponent(typeof(AISideSeek))]
 [RequireComponent(typeof(AISidePathseeker))]
 [RequireComponent(typeof(AISideWander))]
@@ -13,6 +14,7 @@ public class EnemyAI : MonoBehaviour
 {
     [HideInInspector]
     public Pilot pilot;
+    SideMove move;
     AISideSeek seek;
     AISidePathseeker pathseeker;
     AISideWander wander;
@@ -22,6 +24,7 @@ public class EnemyAI : MonoBehaviour
     void Awake()
     {
         pilot = GetComponent<Pilot>();
+        move = GetComponent<SideMove>();
         seek = GetComponent<AISideSeek>();
         pathseeker = GetComponent<AISidePathseeker>();
         wander = GetComponent<AISideWander>();
@@ -136,7 +139,7 @@ public class EnemyAI : MonoBehaviour
         GameObject enemy = GetEnemy();
         if(!enemy) return;
 
-        ChangeRange(attackRange);
+        ChangeRange(huggyRange);
         SeekMove(enemy.transform);
     }
 
@@ -160,5 +163,38 @@ public class EnemyAI : MonoBehaviour
     public bool IsInAttackRange()
     {
         return IsInRange(GetEnemy(), attackRange);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(1, 1, 1, .5f);
+        Gizmos.DrawWireSphere(transform.position, huggyRange);
+        Gizmos.color = new Color(1, 0, 0, .5f);
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+
+    // ============================================================================
+
+    bool IsFacingTarget(GameObject target)
+    {
+        if(!target) return false;
+
+        return (target.transform.position.x >= transform.position.x && move.faceR)
+            || (target.transform.position.x < transform.position.x && !move.faceR);
+    }
+
+    public void FaceEnemy()
+    {
+        GameObject enemy = GetEnemy();
+
+        if(!enemy) return;
+
+        pathseeker.target = enemy.transform;
+        
+        if(IsFacingTarget(enemy)) return;
+
+        float x_dir = move.faceR ? -1 : 1;
+
+        EventManager.Current.OnTryMoveX(gameObject, x_dir);
     }
 }
