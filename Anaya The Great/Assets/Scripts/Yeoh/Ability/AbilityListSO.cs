@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Ability
+public class AbilitySlot
 {
-    public AbilitySO SO;
+    public AbilitySO ability;
     public float cooldownLeft=0;
 
-    public bool IsEmpty() => SO==null;
+    public bool IsEmpty() => ability==null;
 
     public bool IsCooling() => cooldownLeft>0;
 
     public void ResetCooldown() => cooldownLeft=0;
 
-    public void DoCooldown() => cooldownLeft=SO.cooldown;
+    public void DoCooldown() => cooldownLeft=ability.cooldown;
 
     public void UpdateCooldown()
     {
@@ -33,83 +33,95 @@ public class Ability
 [CreateAssetMenu]
 public class AbilityListSO : ScriptableObject
 {
-    public List<Ability> abilities;
+    public List<AbilitySlot> abilitySlots;
 
     // Getters ============================================================================
 
-    public Ability GetAbility(AbilitySO abilitySO)
+    public AbilitySlot GetAbility(AbilitySO ability)
     {
-        foreach(var abi in abilities)
+        foreach(var slot in abilitySlots)
         {
-            if(abi.SO == abilitySO)
+            if(slot.ability == ability)
             {
-                return abi;
+                return slot;
             }
         }
         return null;
     }
 
-    public Ability GetAbility(Ability ability)
+    public AbilitySlot GetAbility(AbilitySlot ability)
     {
-        foreach(var abi in abilities)
+        foreach(var slot in abilitySlots)
         {
-            if(abi == ability)
+            if(slot == ability)
             {
-                return abi;
+                return slot;
             }
         }
         return null;
     }
 
-    public bool HasAbility(AbilitySO abilitySO, out Ability ability)
+    public AbilitySlot GetAbility(string ability_name)
     {
-        ability = GetAbility(abilitySO);
+        foreach(var slot in abilitySlots)
+        {
+            if(slot.ability.name == ability_name)
+            {
+                return slot;
+            }
+        }
+        return null;
+    }
 
-        return ability != null;
+    public bool HasAbility(AbilitySO abilitySO, out AbilitySlot slot)
+    {
+        slot = GetAbility(abilitySO);
+
+        return slot != null;
     }
     
-    public bool HasAbility(Ability abi, out Ability ability)
+    public bool HasAbility(AbilitySlot abilitySlot, out AbilitySlot slot)
     {
-        ability = GetAbility(abi);
+        slot = GetAbility(abilitySlot);
 
-        return ability != null;
+        return slot != null;
     }
 
     // Setters ============================================================================
 
     public void AddAbility(AbilitySO abilitySO)
     {
-        if(HasAbility(abilitySO, out Ability ability))
+        if(HasAbility(abilitySO, out AbilitySlot ability))
         {
             Debug.Log($"Already have ability: {abilitySO.Name}");
             return;
         }
 
-        Ability new_ability = new()
+        AbilitySlot new_ability = new()
         {
-            SO = abilitySO,
+            ability = abilitySO,
         };
 
-        abilities.Add(new_ability);
+        abilitySlots.Add(new_ability);
     }
 
-    public void RemoveAbility(Ability ability)
+    public void RemoveAbility(AbilitySlot ability)
     {
-        if(!abilities.Contains(ability)) return;
+        if(!abilitySlots.Contains(ability)) return;
 
-        abilities.Remove(ability);
+        abilitySlots.Remove(ability);
     }
 
     public void RemoveAllAbilities()
     {
-        abilities.Clear();
+        abilitySlots.Clear();
     }
 
     // Actions ============================================================================
 
     public void UpdateCooldowns()
     {
-        foreach(var ability in abilities)
+        foreach(var ability in abilitySlots)
         {
             ability.UpdateCooldown();
         }
@@ -117,7 +129,7 @@ public class AbilityListSO : ScriptableObject
 
     public void ResetCooldowns()
     {
-        foreach(var ability in abilities)
+        foreach(var ability in abilitySlots)
         {
             ability.ResetCooldown();
         }
@@ -127,7 +139,7 @@ public class AbilityListSO : ScriptableObject
 
     public void CleanUp()
     {
-        abilities.RemoveAll(ability => ability.IsEmpty());
+        abilitySlots.RemoveAll(ability => ability.IsEmpty());
     }
 }
 

@@ -8,7 +8,6 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Jump2D))]
 [RequireComponent(typeof(AbilityCaster))]
-[RequireComponent(typeof(HealAbility))]
 
 public class PakYa : MonoBehaviour
 {
@@ -17,7 +16,6 @@ public class PakYa : MonoBehaviour
 
     Jump2D jump;
     AbilityCaster caster;
-    HealAbility heal;
 
     void Awake()
     {
@@ -25,7 +23,11 @@ public class PakYa : MonoBehaviour
 
         jump = GetComponent<Jump2D>();
         caster = GetComponent<AbilityCaster>();
-        heal = GetComponent<HealAbility>();
+    }
+
+    void Start()
+    {
+        EventManager.Current.OnSpawn(gameObject);
     }
 
     // Actions ============================================================================
@@ -70,6 +72,11 @@ public class PakYa : MonoBehaviour
 
         moveInput = value.Get<Vector2>();
     }
+
+    void Update()
+    {
+        UpdateMoveInput();
+    } 
 
     void UpdateMoveInput()
     {
@@ -125,29 +132,17 @@ public class PakYa : MonoBehaviour
     {
         if(!pilot.IsPlayer()) return;
 
-        EventManager.Current.OnTryStartCast(gameObject, heal.healAbility);
+        EventManager.Current.OnTryStartCast(gameObject, "Heal");
     }
 
-    void OnTryStartCast(GameObject caster, AbilitySO abilitySO)
+    void OnTryStartCast(GameObject caster, string ability_name)
     {
         if(caster!=gameObject) return;
 
         if(!AllowCast) return;
 
-        EventManager.Current.OnStartCast(gameObject, abilitySO);
+        EventManager.Current.OnStartCast(gameObject, ability_name);
     }
-
-    // ============================================================================
-
-    void Start()
-    {
-        EventManager.Current.OnSpawn(gameObject);
-    }
-
-    void Update()
-    {
-        UpdateMoveInput();
-    }    
 
     // ============================================================================
 

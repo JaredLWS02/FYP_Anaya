@@ -1,38 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1122666063253575459
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8673653432183635915}
-  m_Layer: 3
-  m_Name: Colliders
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8673653432183635915
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1122666063253575459}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.019, y: 0.865, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2885361039020947262}
-  - {fileID: 3080520362230542703}
-  m_Father: {fileID: 8164431558571021645}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2621600790761938458
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,73 +106,6 @@ MonoBehaviour:
   regenInterval: 0.1
   defaultRegenHp: 0
   defaultRegenInterval: 0
---- !u!1 &4721275422040717426
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3080520362230542703}
-  - component: {fileID: 5855341806371434347}
-  m_Layer: 3
-  m_Name: Crawling
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &3080520362230542703
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4721275422040717426}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8673653432183635915}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &5855341806371434347
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4721275422040717426}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: a659cd2aeb3f63d4d9ad3a2d07b78477, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.25}
-  m_Size: {x: 0.32, y: 0.5}
-  m_Direction: 0
 --- !u!1 &5605008358164243104
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,7 +164,7 @@ GameObject:
   - component: {fileID: 2885361039020947262}
   - component: {fileID: 5634205442899307486}
   m_Layer: 3
-  m_Name: Standing
+  m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -278,12 +178,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6417208816296473062}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.865, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8673653432183635915}
+  m_Father: {fileID: 8164431558571021645}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &5634205442899307486
 CapsuleCollider2D:
@@ -317,8 +217,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.84, y: 1.72}
+  m_Offset: {x: 0, y: 0.5633639}
+  m_Size: {x: 1.2121842, y: 2.8692052}
   m_Direction: 0
 --- !u!1 &7303396506863329987
 GameObject:
@@ -361,7 +261,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2832151168365298174}
-  - {fileID: 8673653432183635915}
+  - {fileID: 2885361039020947262}
   - {fileID: 8549232364009737100}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -388,7 +288,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -530,7 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863b8763f6ba15e48af6ea96c1cb4063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 6
+  maxSpeed: 8
   defMaxSpeed: 0
   acceleration: 10
   deceleration: 10
@@ -568,9 +468,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canJump: 1
-  jumpForce: 10
-  extraJumps: 1
+  jumpForce: 15
   jumpCooldown: 0.2
+  extraJumps: 1
   jumpBufferTime: 0.2
   coyoteTime: 0.2
   jumpCutMult: 0.5
@@ -622,9 +522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343ddc7facad07d4b95723ef1a151f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healAbility: {fileID: 11400000, guid: 289d739c06a77ac4f91862671cfa2768, type: 2}
   hp: {fileID: 1361182114987422169}
-  healAmount: 20
 --- !u!1 &8079969199594567872
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,7 +550,7 @@ Transform:
   m_GameObject: {fileID: 8079969199594567872}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.114, y: -0.15, z: 0}
+  m_LocalPosition: {x: -0.209, y: -0.283, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -859,7 +757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7017999127341422229, guid: 943654332d8a64c449dad116eccb0470, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.2
+      value: 3.28
       objectReference: {fileID: 0}
     - target: {fileID: 7017999127341422229, guid: 943654332d8a64c449dad116eccb0470, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

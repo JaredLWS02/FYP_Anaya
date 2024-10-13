@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 096d80e2947485642b2ce3c02dd7e3ec, type: 3}
   m_Name: PakYa AbilityList
   m_EditorClassIdentifier: 
-  abilities:
-  - SO: {fileID: 11400000, guid: 289d739c06a77ac4f91862671cfa2768, type: 2}
+  abilitySlots:
+  - ability: {fileID: 11400000, guid: 289d739c06a77ac4f91862671cfa2768, type: 2}
     cooldownLeft: 0
