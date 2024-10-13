@@ -13,6 +13,7 @@ public class PlayerAttack : MonoBehaviour
 
     public Transform attPos;
     public LayerMask enemies;
+    public LayerMask enemyAttRange;
     public float range;
     private int dmg;
     public int dmgLight;
@@ -50,7 +51,12 @@ public class PlayerAttack : MonoBehaviour
 
                     for (int i = 0; i < enemiesToDamage.Length; i++)
                     {
-                        enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(dmg);
+                        // Counter damage
+                        if (enemiesToDamage[i].GetComponent<Enemy>().stun)
+                            enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(dmg * 2);
+                        // Normal damage
+                        else
+                            enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(dmg);
                     }
 
                     timeBtwLightAtt = startTimeBtwLightAtt;
@@ -64,7 +70,12 @@ public class PlayerAttack : MonoBehaviour
 
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                    enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(dmgHeavy);
+                    // Counter damage
+                    if (enemiesToDamage[i].GetComponent<Enemy>().stun)
+                        enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(dmgHeavy * 2);
+                    // Normal damage
+                    else
+                        enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(dmgHeavy);
                 }
 
                 lightAttCount = 0;
@@ -90,6 +101,17 @@ public class PlayerAttack : MonoBehaviour
             {
                 Debug.Log("Combo timer past cooldown point, resetting combo");
                 messageSent = true;
+            }
+        }
+
+        // Parry
+        if (Input.GetKey(KeyCode.F))
+        {
+            Collider2D[] enemiesToParry = Physics2D.OverlapCircleAll(attPos.position, range, enemyAttRange);
+
+            for (int i = 0; i < enemiesToParry.Length; i++)
+            {
+                enemiesToParry[i].GetComponentInParent<Enemy>().Stunned();
             }
         }
     }

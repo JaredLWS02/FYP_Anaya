@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Loot
-  - Enemy
   layers:
   - Default
   - TransparentFX
