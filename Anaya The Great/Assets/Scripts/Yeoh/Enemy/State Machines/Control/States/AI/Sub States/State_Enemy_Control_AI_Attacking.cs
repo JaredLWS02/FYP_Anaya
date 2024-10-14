@@ -16,8 +16,6 @@ public class State_Enemy_Control_AI_Attacking : BaseState
         Debug.Log($"{enemy.gameObject.name} SubState: {Name}");
 
         ToggleAllow(true);
-
-        enemy.SeekEnemy();
     }
 
     protected override void OnUpdate(float deltaTime)
