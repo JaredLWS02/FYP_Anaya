@@ -215,7 +215,13 @@ public class Jump2D : MonoBehaviour
 
     public bool IsGrounded()
     {
-        return Physics2D.OverlapBox((Vector2)transform.position + boxCenterOffset, boxSize, 0f, groundLayer);
+        Collider2D[] colliders =  Physics2D.OverlapBoxAll((Vector2)transform.position + boxCenterOffset, boxSize, 0f, groundLayer);
+
+        foreach(var coll in colliders)
+        {
+            if(!coll.isTrigger) return true;
+        }
+        return false;
     }
 
     void OnDrawGizmosSelected()
